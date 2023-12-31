@@ -13,31 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QRCodeApp
+namespace QRCodeApp.Misc
 {
     /// <summary>
-    /// Interaction logic for Create.xaml
+    /// Interaction logic for dircreated.xaml
     /// </summary>
-    public partial class Create : Page
+    public partial class dircreated : Page
     {
-        public Create()
+        public dircreated()
         {
             InitializeComponent();
         }
-
-        private void Generate(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (e.NewValue.HasValue)
-            {
-                Color selectedColor = e.NewValue.Value;
-
-            }
-        }
-
     }
 }

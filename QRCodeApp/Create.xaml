@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:QRCodeApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -10,6 +11,28 @@
       Title="Create">
 
     <Grid>
-        
+        <!--Column 1-->
+        <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="97,127,237,288.6" Width="66" FontFamily="Yu Gothic UI Light" Height="34">Name</Label>
+        <TextBox x:Name="name" Margin="99,157,26,263.6"></TextBox>
+
+        <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="97,205,181,210.6" Width="122" FontFamily="Yu Gothic UI Light" Height="34">URL or Text</Label>
+        <TextBox x:Name="text" Margin="99,235,26,185.6"></TextBox>
+
+        <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="97,285,181,130.6" Width="122" FontFamily="Yu Gothic UI Light" Height="34">Color</Label>
+        <xctk:ColorPicker x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" SelectedColor="Black" Margin="164,291,152,133.6"/>
+        <Button Click="Generate" Background="#FF1CBD5E" Foreground="White" Margin="124,373,135,36.6" FontSize="22">Generate</Button>
+        <Rectangle Fill="Black" Height="449" Width="1.5" HorizontalAlignment="Right"></Rectangle>
+        <Button Background="#FF9DBEEE" Foreground="Black" Margin="10,10,282,404.6" FontSize="22">Back</Button>
+
+        <!--Column 2-->
+        <Border BorderBrush="Black" Grid.Column="1" BorderThickness="1" Margin="86,98,72,133.6">
+            <Image Grid.Column="1"></Image>
+        </Border>
+        <Button Background="#FF1CBD5E" Foreground="White" Margin="140,373,119,36.6" FontSize="22" Grid.Column="1">Save</Button>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
     </Grid>
 </Page>

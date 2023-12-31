@@ -10,7 +10,7 @@
 
     <Grid>
         <Frame x:Name="main" NavigationUIVisibility="Hidden"></Frame>
-        <Button Background="#FFD7EAFC" Grid.Column="0" Margin="97,117,65,127">
+        <Button Click="CreateNew" Background="#FF9DBEEE" Grid.Column="0" Margin="97,117,65,127">
             <StackPanel Margin="0,-10,0,0">
                 <TextBlock Width="142" FontSize="100" HorizontalAlignment="Right" Height="112" Margin="0,-18,-12,0">
                     <StackPanel>
@@ -21,7 +21,7 @@
             </StackPanel>
         </Button>
 
-        <Button Background="#FFD7EAFC" Grid.Column="1" Margin="97.2,-111,64.6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Background="#FFB4C7F3" Grid.Column="1" Margin="97.2,-111,64.6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Height="41" Width="181">
                 <TextBlock FontSize="29" Margin="52,0,0,-0.2" Width="129">Scan Now!</TextBlock>
             </StackPanel>

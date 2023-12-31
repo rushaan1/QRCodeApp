@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace QRCodeApp
 {
@@ -23,6 +24,17 @@ namespace QRCodeApp
         public MainWindow()
         {
             InitializeComponent();
+            if (File.ReadAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Misc", "dircreated.txt")) == "False")  
+            {
+                Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QR Codes"));
+                File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Misc", "dircreated.txt"), "True");
+            }
+
+        }
+
+        private void CreateNew(object sender, RoutedEventArgs e)
+        {
+            main.Content = new Create();
         }
     }
 }
