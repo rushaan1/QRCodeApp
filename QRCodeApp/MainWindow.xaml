@@ -1,0 +1,40 @@
+﻿<Window x:Class="QRCodeApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QRCodeApp"
+        mc:Ignorable="d"
+        Background="Snow"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <Frame x:Name="main" NavigationUIVisibility="Hidden"></Frame>
+        <Button Background="#FFD7EAFC" Grid.Column="0" Margin="97,117,65,127">
+            <StackPanel Margin="0,-10,0,0">
+                <TextBlock Width="142" FontSize="100" HorizontalAlignment="Right" Height="112" Margin="0,-18,-12,0">
+                    <StackPanel>
+                        <TextBlock Margin="0,0,0,0" FontFamily="Yu Gothic UI Light">+</TextBlock>
+                    </StackPanel>
+                </TextBlock>
+                <TextBlock FontSize="40" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" FontFamily="Yu Gothic UI Light" > Create New</TextBlock>
+            </StackPanel>
+        </Button>
+        
+        
+        <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,-140,0,0"></Rectangle>
+        <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,226,0,0"></Rectangle>
+        <Label Grid.Column="0" FontFamily="Yu Gothic Light" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="36" Margin="0,0,0,-46">O</Label>
+        <Label Grid.Column="1" FontFamily="Yu Gothic Light" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" Margin="0,0,0,-46">R</Label>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        
+
+
+    </Grid>
+</Window>
