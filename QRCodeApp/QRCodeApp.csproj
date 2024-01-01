@@ -126,5 +126,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sampleQR.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
