@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QRCodeApp.Misc
+namespace QRCodeApp
 {
     /// <summary>
-    /// Interaction logic for dircreated.xaml
+    /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class dircreated : Page
+    public partial class MainPage : Page
     {
-        public dircreated()
+        public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void CreateNew(object sender, RoutedEventArgs e)
+        {
+            myframe.frame.Content = new Create();
         }
     }
 }
