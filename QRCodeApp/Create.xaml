@@ -11,15 +11,15 @@ Background="Snow"
 Title="Create">
 
     <Viewbox>
-        <Grid>
+        <Grid Width="800" Height="450">
         <!--Column 1-->
         <Button Grid.Column="0" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="22">Back</Button>
 
         <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="66" FontFamily="Yu Gothic UI Light" Height="34" Margin="97,88,237,327.6" MinHeight="34" MinWidth="66">Name</Label>
-        <TextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="275" Height="30" x:Name="name" Margin="99,122,26,297.6" MinHeight="30" MinWidth="275"/>
+        <TextBox FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="275" Height="30" x:Name="name" Margin="99,122,26,297.6" MinHeight="30" MinWidth="275"/>
 
         <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="110" FontFamily="Yu Gothic UI Light" Height="34" Margin="97,170,193,245.6" MinHeight="34" MinWidth="110">URL or Text</Label>
-        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="275" Height="30" x:Name="text" Margin="99,204,26,215.6" MinHeight="30" MinWidth="275" TextChanged="text_TextChanged"/>
+        <TextBox FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="275" Height="30" x:Name="text" Margin="99,204,26,215.6" MinHeight="30" MinWidth="275" TextChanged="text_TextChanged"/>
 
         <Label MinHeight="34" MinWidth="62" MaxHeight="34" MaxWidth="62" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="97,250,241,165.6" Width="62" FontFamily="Yu Gothic UI Light" Height="34" Content="Color"/>
         <xctk:ColorPicker MinHeight="25" MinWidth="68" MaxHeight="25" MaxWidth="68" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="25" x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" SelectedColor="Black" Margin="164,255,168,169.6" />
@@ -41,7 +41,7 @@ Title="Create">
         </ComboBox>
 
         <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="97,302,241,113.6" Width="62" FontFamily="Yu Gothic UI Light" Height="34" Content="Size" RenderTransformOrigin="0.466,0.497" MinWidth="62" MinHeight="34"/>
-        <Slider HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ValueChanged="Slider_ValueChanged" Value="200" Minimum="110" Maximum="400" Grid.Column="0" Width="130" Height="30" Margin="147,306,123,113.6" MinWidth="130" MinHeight="30"></Slider>
+        <Slider x:Name="pako" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ValueChanged="Slider_ValueChanged" Value="200" Minimum="110" Maximum="400" Grid.Column="0" Width="130" Height="30" Margin="147,306,123,113.6" MinWidth="130" MinHeight="30"></Slider>
         <Label Name="size" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="299,302,10,113.6" FontFamily="Yu Gothic UI Light" Height="34" Content="200x200" RenderTransformOrigin="0.466,0.497" MinWidth="75" MinHeight="34" />
 
         <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Generate" Background="#FF1CBD5E" Foreground="White" FontSize="22" Width="130" Height="41" Margin="147,371,123,37.6" MinWidth="130" MinHeight="41">Generate</Button>
@@ -50,16 +50,15 @@ Title="Create">
         <Rectangle Fill="Black" Height="449" Width="1.5" HorizontalAlignment="Right" MinWidth="1.5" MinHeight="449"></Rectangle>
 
         <!--Column 2-->
-        <Image x:Name="qrcode" Opacity="0.45" Source="/Images/sampleQR.png" Grid.Column="1" Width="200" Height="200" Margin="5,0,-5,49.6"/>
+        <Image Panel.ZIndex="1" x:Name="qrcode" Opacity="0.38" Source="/Images/sampleQR.png" Grid.Column="1" Width="208" Height="200" Margin="100,108,92,142"/>
 
-        
-        <Button HorizontalAlignment="Stretch" Click="AddIcon" Background="#FF1CBD5E" Foreground="White" Width="110" Height="40" VerticalAlignment="Stretch" FontSize="22" Grid.Column="1" Margin="71,372,219,37.6" MinWidth="110">Add Icon</Button>
+        <Label Name="filename" FontSize="19" Grid.Column="1" Margin="71,333,209,83" Width="100" FontFamily="Yu Gothic UI Light" Height="34" Content="" RenderTransformOrigin="0.466,0.497" MinWidth="120" MinHeight="34"/>
+        <Button HorizontalAlignment="Stretch" Click="AddIcon" Background="#FF1CBD5E" Foreground="White" Width="110" Height="40" VerticalAlignment="Stretch" FontSize="17.5" Grid.Column="1" Margin="71,372,219,37.6" MinWidth="110">Add Icon</Button>
         <Button Click="Save" Background="#FF1CBD5E" Foreground="White" Width="110" Height="40" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22" Grid.Column="1" Margin="212,371,78,37.6" MinWidth="110" MinHeight="41">Save</Button>
 
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
     </Grid>
     </Viewbox>

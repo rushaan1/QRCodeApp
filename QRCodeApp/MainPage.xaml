@@ -30,7 +30,7 @@
             </StackPanel>
         </Button>
 
-        <Image Grid.Column="1" Source="/Images/scannn.png" Width="75" Height="75" Margin="111.2,117,210.6,228"></Image>
+        <Image x:Name="abc" Grid.Column="1" Source="/Images/scannn.png" Width="75" Height="75" Margin="111.2,117,210.6,228"></Image>
 
         <Label FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="66.2,189,228.6,199" FontFamily="Yu Gothic UI Light">Open Recent</Label>
         <ListView Grid.Column="1" Margin="66.2,226,61.6,65">

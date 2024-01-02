@@ -23,6 +23,8 @@ namespace QRCodeApp
         public MainPage()
         {
             InitializeComponent();
+            abc.Source = new BitmapImage(new Uri("/Images/sampleQR.png", UriKind.Relative)); 
+            abc.Source = new BitmapImage(new Uri("/Images/scannn.png", UriKind.Relative)); 
         }
 
         private void CreateNew(object sender, RoutedEventArgs e)
