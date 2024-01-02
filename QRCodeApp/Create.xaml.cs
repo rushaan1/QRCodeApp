@@ -80,7 +80,7 @@ namespace QRCodeApp
         public Create()
         {
             InitializeComponent();
-            comboBox.SelectionChanged += ComboBox_Selected;
+            //comboBox.SelectionChanged += ComboBox_Selected;
         }
 
         private void AddIcon(object sender, RoutedEventArgs e)
@@ -139,13 +139,13 @@ namespace QRCodeApp
 
         private void Generate(object sender, RoutedEventArgs e)
         {
-            if (name.Text == "" || text.Text == "") 
+            //if (name.Text == "" || text.Text == "") 
             {
                 MessageBox.Show("Name and Text textboxes cannot be empty!", "Error");
                 return;
             }
 
-            mainQR = GenerateQRCode(text.Text, System.Drawing.Color.FromArgb(colorPicker.SelectedColor.Value.A, colorPicker.SelectedColor.Value.R, colorPicker.SelectedColor.Value.G, colorPicker.SelectedColor.Value.B));
+            //mainQR = GenerateQRCode(text.Text, System.Drawing.Color.FromArgb(colorPicker.SelectedColor.Value.A, colorPicker.SelectedColor.Value.R, colorPicker.SelectedColor.Value.G, colorPicker.SelectedColor.Value.B));
             SaveQRCode(mainQR, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GeneratedQRs", "generatedqr.png"), System.Drawing.Imaging.ImageFormat.Png);
             qrcode.Source = new BitmapImage(new Uri("/GeneratedQRs/generatedqr.png", UriKind.Relative));
             qrcode.Opacity = 1;
@@ -168,32 +168,37 @@ namespace QRCodeApp
         //Format Selected
         private void ComboBox_Selected(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+            //ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
 
-            // Check if an item is selected (to handle the case when the ComboBox is cleared or not yet initialized)
-            if (selectedItem != null)
-            {
-                // Access the content of the selected item
-                string selectedContent = selectedItem.Content.ToString();
-                format = selectedContent;
-                // Display a message (you can replace this with your own logic)
-            }
+            //// Check if an item is selected (to handle the case when the ComboBox is cleared or not yet initialized)
+            //if (selectedItem != null)
+            //{
+            //    // Access the content of the selected item
+            //    string selectedContent = selectedItem.Content.ToString();
+            //    format = selectedContent;
+            //    // Display a message (you can replace this with your own logic)
+            //}
         }
 
         //Size changed
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (e.NewValue == null || size == null) 
-            {
-                return;
-            }
-            size.Content = e.NewValue.ToString() + "x" + e.NewValue.ToString();
-            if (mainQR == null) 
-            {
-                return;
-            }
-            qrcode.Width = e.NewValue;
-            qrcode.Height = e.NewValue;
+            //if (e.NewValue == null || size == null) 
+            //{
+            //    return;
+            //}
+            //size.Content = e.NewValue.ToString() + "x" + e.NewValue.ToString();
+            //if (mainQR == null) 
+            //{
+            //    return;
+            //}
+            //qrcode.Width = e.NewValue;
+            //qrcode.Height = e.NewValue;
+        }
+
+        private void text_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

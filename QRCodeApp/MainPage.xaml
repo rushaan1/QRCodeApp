@@ -9,6 +9,9 @@
       Background="Snow"
       Title="MainPage">
 
+    <Viewbox>
+        
+    
     <Grid>
         <Button Click="CreateNew" Background="#FF9DBEEE" Grid.Column="0" Margin="97,117,65,127">
             <StackPanel Margin="0,-10,0,0">
@@ -17,7 +20,7 @@
                         <TextBlock Margin="0,0,0,0" FontFamily="Yu Gothic UI Light">+</TextBlock>
                     </StackPanel>
                 </TextBlock>
-                <TextBlock FontSize="40" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" FontFamily="Yu Gothic UI Light" > Create New</TextBlock>
+                    <TextBlock FontSize="40" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" FontFamily="Yu Gothic UI Light" Padding="5,0,7,0" > Create New </TextBlock>
             </StackPanel>
         </Button>
 
@@ -47,4 +50,5 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
     </Grid>
+    </Viewbox>
 </Page>
