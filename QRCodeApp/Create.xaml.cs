@@ -29,8 +29,16 @@ namespace QRCodeApp
         private Bitmap overlay = null;
         private string contentWhenGenerated = "";
 
-        private string format = "PNG";
+        private string format = "PNG"; 
         private Frame frame;
+        private string type;
+
+        private Dictionary<string, Run> textRuns = new Dictionary<string, Run>();
+        private Dictionary<string, Run> smsRuns = new Dictionary<string, Run>();
+        private Dictionary<string, Run> wifiRuns = new Dictionary<string, Run>();
+        private Dictionary<string, Run> vcardRuns = new Dictionary<string, Run>();
+
+        private Paragraph dp;
 
         private System.Drawing.Imaging.ImageFormat GetFormat(string format) 
         {
@@ -123,12 +131,343 @@ namespace QRCodeApp
             qrcode.Source = B2BI(mainQR);
         }
 
+        private void AddText()
+        {
+            Paragraph dp = new Paragraph();
+            Run textRun = new Run("\u00A0") { Name = "text", Foreground = System.Windows.Media.Brushes.Black };
+            dp.Inlines.Add(textRun);
+            textRuns["text"] = textRun;
+            FlowDocument flowDocument = rich.Document;
+            flowDocument.Blocks.Add(dp);
+        }
 
-        public Create()
+        private void AddSms()
+        {
+            Paragraph dp = new Paragraph();
+            Run phRun = new Run("\u00A0") { Name = "ph", Foreground = System.Windows.Media.Brushes.Black };
+            Run msgRun = new Run("\u00A0") { Name = "msg", Foreground = System.Windows.Media.Brushes.Black };
+            dp.Inlines.Add(new TextBlock() { Text = "Phone No:", Foreground = System.Windows.Media.Brushes.Green });
+            dp.Inlines.Add(phRun);
+            dp.Inlines.Add(new LineBreak());
+            dp.Inlines.Add(new TextBlock() { Text = "Message:", Foreground = System.Windows.Media.Brushes.Green });
+            dp.Inlines.Add(msgRun);
+            smsRuns["ph"] = phRun;
+            smsRuns["msg"] = msgRun;
+            FlowDocument flowDocument = rich.Document;
+            flowDocument.Blocks.Add(dp);
+        }
+
+        private void AddWiFi()
+        {
+            Paragraph dp = new Paragraph();
+            Run ssidRun = new Run("\u00A0") { Name = "ssid", Foreground = System.Windows.Media.Brushes.Black };
+            Run pwdRun = new Run("\u00A0") { Name = "pwd", Foreground = System.Windows.Media.Brushes.Black };
+            dp.Inlines.Add(new TextBlock() { Text = "SSID:", Foreground = System.Windows.Media.Brushes.Green });
+            dp.Inlines.Add(ssidRun);
+            dp.Inlines.Add(new LineBreak());
+            dp.Inlines.Add(new TextBlock() { Text = "Password:", Foreground = System.Windows.Media.Brushes.Green });
+            dp.Inlines.Add(pwdRun);
+            wifiRuns["ssid"] = ssidRun;
+            wifiRuns["pwd"] = pwdRun;
+            FlowDocument flowDocument = rich.Document;
+            flowDocument.Blocks.Add(dp);
+        }
+
+        private void AddVCard()
+        {
+            FlowDocument flowDocument = rich.Document;
+            Paragraph dp = new Paragraph(); 
+            Run fnRun = new Run() {Foreground = System.Windows.Media.Brushes.Black };
+            Run companyRun = new Run() {Foreground = System.Windows.Media.Brushes.Black };
+            Run telRun = new Run() {Foreground = System.Windows.Media.Brushes.Black };
+            Run emailRun = new Run() { Foreground = System.Windows.Media.Brushes.Black };
+            Run adrRun = new Run() {Foreground = System.Windows.Media.Brushes.Black };
+            
+            InlineUIContainer fnTb = new InlineUIContainer(new TextBlock() {  Tag = "fn", Text = "First Name:", Foreground = System.Windows.Media.Brushes.Green });
+            InlineUIContainer ctbh = new InlineUIContainer(new TextBlock() {  Tag = "company", Text = "Company:", Foreground = System.Windows.Media.Brushes.Green });
+            InlineUIContainer teltb = new InlineUIContainer(new TextBlock() { Tag = "tel", Text = "Phone/Tel No:", Foreground = System.Windows.Media.Brushes.Green });
+            InlineUIContainer emailtb = new InlineUIContainer(new TextBlock() {  Tag = "email", Text = "Email:", Foreground = System.Windows.Media.Brushes.Green });
+            InlineUIContainer adrtb = new InlineUIContainer(new TextBlock() {  Tag = "adr", Text = "Address:", Foreground = System.Windows.Media.Brushes.Green });
+            fnTb.Unloaded += InlineUIContainer_Unloaded_1;
+            ctbh.Unloaded += InlineUIContainer_Unloaded_2;
+            teltb.Unloaded += InlineUIContainer_Unloaded_3;
+            emailtb.Unloaded += InlineUIContainer_Unloaded_4;
+            adrtb.Unloaded += InlineUIContainer_Unloaded_5;
+            dp.Inlines.Add(fnTb);
+            //np.Inlines.Add(fnTb);
+
+            dp.Inlines.Add(fnRun);
+            dp.Inlines.Add(new LineBreak());
+
+            dp.Inlines.Add(ctbh);
+            //np.Inlines.Add(ctbh);
+
+            dp.Inlines.Add(companyRun);
+            dp.Inlines.Add(new LineBreak());
+
+            dp.Inlines.Add(teltb);
+            //np.Inlines.Add(teltb);
+
+            dp.Inlines.Add(telRun);
+            dp.Inlines.Add(new LineBreak());
+
+            dp.Inlines.Add(emailtb);
+            //np.Inlines.Add(emailtb);
+
+            dp.Inlines.Add(emailRun);
+            dp.Inlines.Add(new LineBreak());
+
+            dp.Inlines.Add(adrtb);
+            //np.Inlines.Add(adrtb);
+
+            dp.Inlines.Add(adrRun);
+
+            vcardRuns["fn"] = fnRun;
+            vcardRuns["company"] = companyRun;
+            vcardRuns["tel"] = telRun;
+            vcardRuns["email"] = emailRun;
+            vcardRuns["adr"] = adrRun;
+
+            // Get the FlowDocument of the RichTextBox
+            
+
+            // Add the dynamicParagraph to the Blocks collection
+            flowDocument.Blocks.Add(dp);
+        }
+
+        private void InlineUIContainer_Unloaded_1(object sender, RoutedEventArgs e)
+        {
+            (sender as InlineUIContainer).Unloaded -= new RoutedEventHandler(InlineUIContainer_Unloaded_1);
+
+            TextBlock tb = new TextBlock();
+            tb.Text = "Full Name:";
+            tb.Foreground = System.Windows.Media.Brushes.Green; 
+
+            TextPointer tp = rich.CaretPosition.GetInsertionPosition(LogicalDirection.Backward);
+            //rich.CaretPosition = rich.CaretPosition.GetPositionAtOffset(tb.Text.Length+1);
+            InlineUIContainer iuic = new InlineUIContainer(tb, tp);
+
+            rich.CaretPosition = rich.CaretPosition.GetPositionAtOffset(tb.Text.Length + 1);
+            iuic.Unloaded += new RoutedEventHandler(InlineUIContainer_Unloaded_1);
+        }
+
+        private void InlineUIContainer_Unloaded_2(object sender, RoutedEventArgs e)
+        {
+            (sender as InlineUIContainer).Unloaded -= new RoutedEventHandler(InlineUIContainer_Unloaded_2);
+
+            TextBlock tb = new TextBlock();
+            tb.Text = "Company:";
+            tb.Foreground = System.Windows.Media.Brushes.Green;
+
+            TextPointer tp = rich.CaretPosition.GetInsertionPosition(LogicalDirection.Forward);
+            //rich.CaretPosition = rich.CaretPosition.GetPositionAtOffset(tb.Text.Length+1);
+            InlineUIContainer iuic = new InlineUIContainer(tb, tp);
+            iuic.Unloaded += new RoutedEventHandler(InlineUIContainer_Unloaded_2);
+        }
+
+        private void InlineUIContainer_Unloaded_3(object sender, RoutedEventArgs e)
+        {
+            (sender as InlineUIContainer).Unloaded -= new RoutedEventHandler(InlineUIContainer_Unloaded_3);
+
+            TextBlock tb = new TextBlock();
+            tb.Text = "Phone/Tel:";
+            tb.Foreground = System.Windows.Media.Brushes.Green;
+
+            TextPointer tp = rich.CaretPosition.GetInsertionPosition(LogicalDirection.Forward);
+            //rich.CaretPosition = rich.CaretPosition.GetPositionAtOffset(tb.Text.Length+1);
+            InlineUIContainer iuic = new InlineUIContainer(tb, tp);
+            iuic.Unloaded += new RoutedEventHandler(InlineUIContainer_Unloaded_3);
+        }
+
+        private void InlineUIContainer_Unloaded_4(object sender, RoutedEventArgs e)
+        {
+            (sender as InlineUIContainer).Unloaded -= new RoutedEventHandler(InlineUIContainer_Unloaded_4);
+
+            TextBlock tb = new TextBlock();
+            tb.Text = "Email:";
+            tb.Foreground = System.Windows.Media.Brushes.Green;
+
+            TextPointer tp = rich.CaretPosition.GetInsertionPosition(LogicalDirection.Forward);
+            //rich.CaretPosition = rich.CaretPosition.GetPositionAtOffset(tb.Text.Length+1);
+            InlineUIContainer iuic = new InlineUIContainer(tb, tp);
+            iuic.Unloaded += new RoutedEventHandler(InlineUIContainer_Unloaded_4);
+        }
+
+        private void InlineUIContainer_Unloaded_5(object sender, RoutedEventArgs e)
+        {
+            (sender as InlineUIContainer).Unloaded -= new RoutedEventHandler(InlineUIContainer_Unloaded_5);
+
+            TextBlock tb = new TextBlock();
+            tb.Text = "Address:";
+            tb.Foreground = System.Windows.Media.Brushes.Green;
+
+            TextPointer tp = rich.CaretPosition.GetInsertionPosition(LogicalDirection.Forward);
+            //rich.CaretPosition = rich.CaretPosition.GetPositionAtOffset(tb.Text.Length+1);
+            InlineUIContainer iuic = new InlineUIContainer(tb, tp);
+            iuic.Unloaded += new RoutedEventHandler(InlineUIContainer_Unloaded_5);
+        }
+
+        private void richTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.Key == Key.Back || e.Key == Key.Delete)
+            //{
+            //    TextPointer caretPosition = rich.CaretPosition;
+            //    if (caretPosition != null)
+            //    {
+            //        TextPointer prevCaretPosition = caretPosition.GetPositionAtOffset(0);
+            //        if (prevCaretPosition != null)
+            //        {
+            //            Paragraph paragraph = prevCaretPosition.Paragraph;
+            //            if (paragraph != null)
+            //            {
+            //                // Get the Inline elements within the Paragraph
+            //                InlineCollection inlines = paragraph.Inlines;
+
+            //                // Iterate through the Inline elements
+            //                Inline inlineBeforeCaret = null;
+            //                foreach (Inline inline in inlines)
+            //                {
+            //                    // Check if the Inline ends just before the caret position
+            //                    if (inline.ElementEnd.CompareTo(prevCaretPosition) == 0)
+            //                    {
+            //                        e.Handled = true;
+            //                        //inlineBeforeCaret = inline;
+            //                        //Trace.WriteLine("color: "+ inlineBeforeCaret.Foreground.ToString());
+            //                        //if (inlineBeforeCaret.Foreground.ToString() == "#FF000000") 
+            //                        //{
+            //                        //    Trace.WriteLine("texto: " + inlineBeforeCaret.Foreground.ToString());
+            //                        //    e.Handled = true;
+            //                        //}
+            //                        break;
+            //                    }
+            //                }
+
+            //                // Now you have the Inline just before the caret
+            //            }
+            //        }
+            //    }
+            //}
+
+
+        }
+
+
+
+
+
+
+        private bool ShouldPreventDeletion()
+        {
+            // Implement your condition for preventing deletion here
+            // For example, check if the current selection contains a specific type of inline element
+
+            // Replace this condition with your specific logic
+            // For example, preventing deletion if a TextBlock is selected
+
+            TextSelection selection = rich.Selection;
+            if (selection != null && selection.Start.Parent is TextBlock)
+            {
+                Trace.WriteLine("Its true");
+                return true;
+            }
+
+            return false;
+        }
+
+        /** For reference purposes
+         *  FN:John Doe
+            ORG:Company Inc.
+            TEL:+123456789
+            EMAIL:john.doe@example.com
+            ADR:123 Main Street, Cityville, State, 12345, USA
+            END:VCARD
+         */
+        private string GetQRText() 
+        {
+            string myText = "";
+            
+            switch (type)
+            {
+                case "text":
+                    myText = textRuns["text"].Text; 
+                    break;
+                case "vcard":
+                    myText = $"BEGIN:VCARD\nVERSION: 3.0\nFN:{vcardRuns["fn"].Text}" +
+                        $"\nORG:{vcardRuns["company"].Text}\nTEL:{vcardRuns["tel"].Text}\nEMAIL:{vcardRuns["email"].Text}\nADR:{vcardRuns["adr"].Text}\nEND:VCARD";
+                    break;
+                case "url":
+                    myText = textRuns["text"].Text;
+                    break;
+                case "sms":
+                    myText = $"smsto:{smsRuns["ph"].Text}?body=${smsRuns["msg"].Text.Replace(" ", "%20")}";
+                    break;
+                case "wifi":
+                    myText = $"WIFI:T:WPA;S:{wifiRuns["ssid"].Text};P:{wifiRuns["pwd"].Text};;";
+                    break;
+            }
+            return myText;
+        }
+
+
+        public Create(string type)
         {
             InitializeComponent();
+            this.type = type;
             comboBox.SelectionChanged += ComboBox_Selected;
+            switch (type) 
+            {
+                case "text":
+                    title.Content = "Text";
+                    AddText();
+                    break;
+                case "vcard":
+                    title.Content = "vCard";
+                    AddVCard();
+                    break;
+                case "url":
+                    title.Content = "URL";
+                    AddText();
+                    break;
+                case "sms":
+                    title.Content = "SMS";
+                    AddSms();
+                    break;
+                case "wifi":
+                    title.Content = "WiFi";
+                    AddWiFi();
+                    break;
+            }
+            //System.Threading.Thread thread = new System.Threading.Thread(CheckForInlines);
+            //thread.Start();
         }
+
+        //private void CheckForInlines()
+        //{
+        //    while (true)
+        //    {
+        //        int count = 0;
+
+        //        foreach (Inline line in dp.Inlines)
+        //        {
+        //            this.Dispatcher.Invoke(() =>
+        //            {
+        //                Trace.WriteLine(dp.Inlines.LastInline.Name);
+        //                if (line.Name == "fn" || line.Name == "tel" || line.Name == "company" || line.Name == "adr" || line.Name == "email")
+        //                {
+        //                    count++;
+        //                }
+        //            });
+        //        }
+        //        if (count != 5)
+        //        {
+        //            this.Dispatcher.Invoke(() =>
+        //            {
+        //                AddVCard(true, vcardRuns["fn"].Text, vcardRuns["company"].Text, vcardRuns["tel"].Text, vcardRuns["email"].Text, vcardRuns["adr"].Text);
+        //            });
+        //        }Trace.WriteLine(count);
+        //        System.Threading.Thread.Sleep(100);
+        //    }
+        //}
 
         private void AddIcon(object sender, RoutedEventArgs e)
         {
@@ -196,13 +535,14 @@ namespace QRCodeApp
 
         private void Generate(object sender, RoutedEventArgs e)
         {
-            if (name.Text == "" || text.Text == "") 
+            string qrText = GetQRText();
+            if (name.Text == "" || qrText == "") 
             {
                 MessageBox.Show("Name and Text textboxes cannot be empty!", "Error");
                 return;
             }
 
-            mainQR = GenerateQRCode(text.Text, System.Drawing.Color.FromArgb(colorPicker.SelectedColor.Value.A, colorPicker.SelectedColor.Value.R, colorPicker.SelectedColor.Value.G, colorPicker.SelectedColor.Value.B));
+            mainQR = GenerateQRCode(qrText, System.Drawing.Color.FromArgb(colorPicker.SelectedColor.Value.A, colorPicker.SelectedColor.Value.R, colorPicker.SelectedColor.Value.G, colorPicker.SelectedColor.Value.B));
             SaveQRCode(true, mainQR, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GeneratedQRs", "generatedqr.png"), System.Drawing.Imaging.ImageFormat.Png);
             //qrcode.Source = new BitmapImage(new Uri("/GeneratedQRs/generatedqr.png", UriKind.Relative));
             qrcode.Opacity = 1.0;
@@ -258,5 +598,6 @@ namespace QRCodeApp
         {
 
         }
+
     }
 }

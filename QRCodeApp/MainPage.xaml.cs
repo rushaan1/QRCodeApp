@@ -29,7 +29,7 @@ namespace QRCodeApp
 
         private void CreateNew(object sender, RoutedEventArgs e)
         {
-            myframe.frame.Content = new Create();
+            myframe.frame.Content = new Selection();
         }
     }
 }
