@@ -12,11 +12,15 @@
     <Viewbox>
         <Grid Width="800" Height="450">
             <Button Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
+            <Button Visibility="Hidden" x:Name="showRaw" Click="ShowRaw" Background="#FF1CBD5E" Foreground="Black" Width="100" Height="40" FontSize="18" Margin="10,55,690,355">Show Raw</Button>
+            <Button Visibility="Hidden" x:Name="showMain" Click="ShowMain" Background="#FF1CBD5E" Foreground="Black" Width="100" Height="40" FontSize="18" Margin="10,100,690,310">Show Main</Button>
 
             <Image x:Name="scannedQR" Width="200" Height="200" Margin="299,26,301,224"></Image>
             <TextBox Background="#FF9DF168" IsReadOnly="True" BorderBrush="Transparent" TextWrapping="Wrap" x:Name="qrDetails" TextAlignment="Center" FontSize="24" FontFamily="Yu Gothic Light" Margin="196,226,196,49"></TextBox>
             <TextBlock x:Name="filename" TextAlignment="Center" Margin="82,413,76,10" FontFamily="Century Gothic" FontSize="16"></TextBlock>
-            <!--<Button FontSize="25" Content="Previous" Click="Files" Background="#FF1CBD5E" Margin="320,148,329,250"/>-->
-        </Grid>
+            <Button x:Name="prev" Click="Previous" Foreground="White" FontSize="25" Content="Prev" Background="#FF1CBD5E" Margin="106,357,604,50"/>
+            <Button x:Name="next" Click="Next" Foreground="White" FontSize="25" Content="Next" Background="#FF1CBD5E" Margin="604,357,106,50"/>
+            <TextBlock x:Name="counter" Panel.ZIndex="2" TextAlignment="Center" Margin="365,10,367,414" FontFamily="Century Gothic" FontSize="16">1/16</TextBlock>
+        </Grid> 
     </Viewbox>
 </Page>

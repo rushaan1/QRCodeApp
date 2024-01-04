@@ -25,6 +25,11 @@ namespace QRCodeApp
     public partial class Scanned : Page
     {
         private Bitmap qr;
+        private int index;
+        private string[] qrpaths;
+
+        private string processed;
+        private string raw;
 
         private BitmapImage B2BI(Bitmap bitmap)
         {
@@ -56,26 +61,118 @@ namespace QRCodeApp
                 return;
             }
             filename.Text = fileLocation;
+            counter.Visibility = Visibility.Hidden;
+            prev.Visibility = Visibility.Hidden;
+            next.Visibility = Visibility.Hidden;
+            showRaw.Visibility = Visibility.Visible;
+            showMain.Visibility = Visibility.Visible;
             IdentifyQrCodeContent(result.Text);
             scannedQR.Source = B2BI(qr);
         }
 
-        public Scanned(Bitmap[] qr, string[] fl)  
+        public Scanned(string[] qrpaths)  
         {
             InitializeComponent();
-            this.qr = qr[0];
+            this.qrpaths = qrpaths;
+            Bitmap bmp = new Bitmap(qrpaths[0]);
+            this.qr = bmp; 
             BarcodeReader barcodeReader = new BarcodeReader();
-            ZXing.Result result = barcodeReader.Decode(qr[0]);
+            ZXing.Result result = barcodeReader.Decode(bmp);
             if (result == null)
             {
-                MessageBox.Show("No QR Code Found in the provided image", "Error");
-                myframe.frame.Content = new ScanSelection();
+                MessageBox.Show("No QR Code Found in this image", "Error");
+                scannedQR.Source = B2BI(bmp);
+                filename.Text = qrpaths[0];
+                counter.Text = $"{index+1}/{qrpaths.Length}";
+                index = qrpaths.Length;
+                prev.Visibility = Visibility.Hidden;
                 return;
             }
-            filename.Text = fl[0];
+            index = 0;
+            Trace.WriteLine(qrpaths.Length);
+            prev.Visibility = Visibility.Hidden;
+            filename.Text = qrpaths[0];
+            counter.Text = $"{index+1}/{qrpaths.Length}";
             IdentifyQrCodeContent(result.Text);
-            scannedQR.Source = B2BI(qr[0]);
-        } 
+            scannedQR.Source = B2BI(bmp);
+        }
+
+        private void Previous(object sender, RoutedEventArgs e) 
+        {
+            Trace.WriteLine(index+" when entering");
+            if (index-1 == 0) 
+            {
+                prev.Visibility = Visibility.Hidden;
+            }
+            if (index + 1 == qrpaths.Length ) 
+            {
+                next.Visibility = Visibility.Visible;
+            }
+            Bitmap bmp = new Bitmap(qrpaths[index-1]);
+            this.qr = bmp;
+            BarcodeReader barcodeReader = new BarcodeReader();
+            ZXing.Result result = barcodeReader.Decode(bmp);
+            if (result == null)
+            {
+                MessageBox.Show("No QR Code Found in this image", "Error");
+                scannedQR.Source = B2BI(bmp);
+                index = index - 1;
+                counter.Text = $"{index+1}/{qrpaths.Length}";
+                filename.Text = qrpaths[index];
+                return;
+            }
+            
+            index = index - 1;
+            Trace.WriteLine(index + " when leaving");
+            filename.Text = qrpaths[index];
+            counter.Text = $"{index+1}/{qrpaths.Length}";
+            IdentifyQrCodeContent(result.Text);
+            scannedQR.Source = B2BI(bmp);
+        }
+        
+        private void Next(object sender, RoutedEventArgs e) 
+        {
+            Trace.WriteLine(index + " when entering");
+            if (index + 1 == qrpaths.Length - 1)
+            {
+                Trace.WriteLine("Hiding it");
+                next.Visibility = Visibility.Hidden;
+            }
+            if (index  == 0)
+            {
+                prev.Visibility = Visibility.Visible;
+            }
+            Bitmap bmp = new Bitmap(qrpaths[index + 1]);
+            this.qr = bmp;
+            BarcodeReader barcodeReader = new BarcodeReader();
+            ZXing.Result result = barcodeReader.Decode(bmp);
+            if (result == null)
+            {
+                MessageBox.Show("No QR Code Found in this image", "Error");
+                scannedQR.Source = B2BI(bmp);
+                index = index + 1;
+                counter.Text = $"{index+1}/{qrpaths.Length}";
+                filename.Text = qrpaths[index];
+                return;
+            }
+            index = index + 1;
+            Trace.WriteLine(index + " when leaving");
+            filename.Text = qrpaths[index];
+            counter.Text = $"{index+1}/{qrpaths.Length}";
+            IdentifyQrCodeContent(result.Text);
+            scannedQR.Source = B2BI(bmp);
+        }
+
+        private void ShowRaw(object sender, RoutedEventArgs e) 
+        {
+            processed = qrDetails.Text;
+
+        }
+
+        private void ShowMain(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void Back(object sender, RoutedEventArgs e) 
         {

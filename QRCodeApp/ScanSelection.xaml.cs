@@ -34,11 +34,18 @@ namespace QRCodeApp
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp|All files (*.*)|*.*";
-
+            openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() == true)
             {
-                string selectedImagePath = openFileDialog.FileName;
-                myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(selectedImagePath), selectedImagePath.ToString());
+                string[] selectedImagePath = openFileDialog.FileNames;
+                if (selectedImagePath.Length == 1)
+                {
+                    myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(selectedImagePath[0]), selectedImagePath[0].ToString());
+                }
+                else if (selectedImagePath.Length > 1) 
+                {
+                    myframe.frame.Content = new Scanned(selectedImagePath); 
+                }
             }
         }
         private void Camera(object sender, RoutedEventArgs e)
