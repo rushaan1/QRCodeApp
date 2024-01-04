@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,13 +38,19 @@ namespace QRCodeApp
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedImagePath = openFileDialog.FileName;
-                
+                myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(selectedImagePath), selectedImagePath.ToString());
             }
-            //myframe.frame.Content = new MainPage();
         }
         private void Camera(object sender, RoutedEventArgs e)
         {
-            //myframe.frame.Content = new MainPage();
+            try
+            {
+                Process.Start("explorer.exe", "shell:AppsFolder\\Microsoft.WindowsCamera_8wekyb3d8bbwe!App");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Occured: "+ex.Message, "Error");
+            }
         }
     }
 }

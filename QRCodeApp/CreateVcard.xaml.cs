@@ -214,7 +214,7 @@ namespace QRCodeApp
 
         private void Generate(object sender, RoutedEventArgs e)
         {
-            string qrText = $"BEGIN:VCARD\nVERSION: 3.0\nFN:{fn.Text}" +
+            string qrText = $"BEGIN:VCARD\nVERSION:3.0\nFN:{fn.Text}" +
                         $"\nORG:{company.Text}\nTEL:{tel.Text}\nEMAIL:{email.Text}\nADR:{adr.Text}\nEND:VCARD";
 
             if (name.Text == "" || (fn.Text=="" && company.Text=="" && tel.Text == "" && email.Text == "" && adr.Text == ""))

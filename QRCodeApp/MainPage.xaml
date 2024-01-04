@@ -33,7 +33,7 @@
                 </StackPanel>
             </Button>
 
-            <Button Background="#FF1CBD5E" Grid.Column="1" Margin="97.2,-111,64.6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Click="Scan" Background="#FF1CBD5E" Grid.Column="1" Margin="97.2,-111,64.6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Height="41" Width="181">
                     <TextBlock FontFamily="Yu Gothic Light" FontSize="29" Margin="50,-2,0,-0.2" Width="129" Padding="0,0,0,2"><Run Text="Scan Now!"/></TextBlock>
                 </StackPanel>

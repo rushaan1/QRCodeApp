@@ -34,7 +34,7 @@ namespace QRCodeApp
 
         private void Scan(object sender, RoutedEventArgs e) 
         {
-
+            myframe.frame.Content = new ScanSelection();
         }
 
         private void OpenCredits(object sender, RoutedEventArgs e)
