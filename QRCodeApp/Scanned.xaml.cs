@@ -28,7 +28,7 @@ namespace QRCodeApp
         private int index;
         private string[] qrpaths;
 
-        private string processed;
+        private string processed = "";
         private string raw;
 
         private BitmapImage B2BI(Bitmap bitmap)
@@ -67,6 +67,7 @@ namespace QRCodeApp
             showRaw.Visibility = Visibility.Visible;
             showMain.Visibility = Visibility.Visible;
             IdentifyQrCodeContent(result.Text);
+            raw = result.Text;
             scannedQR.Source = B2BI(qr);
         }
 
@@ -165,13 +166,16 @@ namespace QRCodeApp
 
         private void ShowRaw(object sender, RoutedEventArgs e) 
         {
-            processed = qrDetails.Text;
-
+            if (processed == "") 
+            {
+                processed = qrDetails.Text;
+            }
+            qrDetails.Text = raw;
         }
 
         private void ShowMain(object sender, RoutedEventArgs e)
         {
-
+            qrDetails.Text = processed;
         }
 
         private void Back(object sender, RoutedEventArgs e) 
