@@ -212,6 +212,9 @@
     <Compile Include="Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Scanned.xaml.cs">
+      <DependentUpon>Scanned.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScanSelection.xaml.cs">
       <DependentUpon>ScanSelection.xaml</DependentUpon>
     </Compile>
@@ -264,6 +267,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Scanned.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ScanSelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
