@@ -56,10 +56,11 @@ namespace QRCodeApp
             ZXing.Result result = barcodeReader.Decode(qr);
             if (result == null) 
             {
-                MessageBox.Show("No QR Code Found in the provided image", "Error");
                 myframe.frame.Content = new ScanSelection();
+                MessageBox.Show("No QR Code Found in the provided image", "Error");
                 return;
             }
+            //TODO Tiny bug when the image had no qr code
             filename.Text = fileLocation;
             counter.Visibility = Visibility.Hidden;
             prev.Visibility = Visibility.Hidden;
@@ -87,6 +88,7 @@ namespace QRCodeApp
                 counter.Text = $"{index+1}/{qrpaths.Length}";
                 index = qrpaths.Length;
                 prev.Visibility = Visibility.Hidden;
+                qrDetails.Text = "Invalid/Empty QR Code Data!";
                 return;
             }
             index = 0;
@@ -120,6 +122,7 @@ namespace QRCodeApp
                 index = index - 1;
                 counter.Text = $"{index+1}/{qrpaths.Length}";
                 filename.Text = qrpaths[index];
+                qrDetails.Text = "Invalid/Empty QR Code Data!";
                 return;
             }
             
@@ -154,6 +157,7 @@ namespace QRCodeApp
                 index = index + 1;
                 counter.Text = $"{index+1}/{qrpaths.Length}";
                 filename.Text = qrpaths[index];
+                qrDetails.Text = "Invalid/Empty QR Code Data!";
                 return;
             }
             index = index + 1;
@@ -322,73 +326,6 @@ namespace QRCodeApp
             string wifiPattern = @"^WIFI\:";
 
             return Regex.IsMatch(text, wifiPattern, RegexOptions.IgnoreCase);
-        }
-
-        public void ProcessQrCode(string qrCodeText, TextBlock textBox)
-        {
-            //// Extract WiFi details
-            //string wifiSsidPattern = @"(?:WIFI:S:(?<ssid>[^;]+);T:(?<password>[^;]+);)";
-            //Match wifiMatch = Regex.Match(qrCodeText, wifiSsidPattern);
-
-            //if (wifiMatch.Success)
-            //{
-            //    string ssid = wifiMatch.Groups["ssid"].Value;
-            //    string password = wifiMatch.Groups["password"].Value;
-            //    textBox.Text = $"WiFi SSID: {ssid}\nPassword: {password}";
-            //    return;
-            //}
-
-            //// Extract vCard details
-            //string vCardPattern = @"(?:BEGIN:VCARD\r\nFN:(?<fullname>[^\r\n]+)\r\nTEL:(?<phone>[^\r\n]+)\r\nEMAIL:(?<email>[^\r\n]+)\r\n)";
-            //Match vCardMatch = Regex.Match(qrCodeText, vCardPattern);
-
-            //if (vCardMatch.Success)
-            //{
-            //    string fullname = vCardMatch.Groups["fullname"].Value;
-            //    string phone = vCardMatch.Groups["phone"].Value;
-            //    string email = vCardMatch.Groups["email"].Value;
-
-            //    textBox.Text = $"vCard\nFull Name: {fullname}\nPhone: {phone}\nEmail: {email}";
-            //    return;
-            //}
-
-            //// Extract email details
-            //string emailPattern = @"(?:mailto:(?<email>[^;]+))";
-            //Match emailMatch = Regex.Match(qrCodeText, emailPattern);
-
-            //if (emailMatch.Success)
-            //{
-            //    string email = emailMatch.Groups["email"].Value;
-            //    textBox.Text = $"Email: {email}";
-            //    return;
-            //}
-
-            //// Extract URL details
-            //string urlPattern = @"(?:https?://(?<url>[^\s]+))";
-            //Match urlMatch = Regex.Match(qrCodeText, urlPattern);
-
-            //if (urlMatch.Success)
-            //{
-            //    string url = urlMatch.Groups["url"].Value;
-            //    textBox.Text = $"URL: {url}";
-            //    return;
-            //}
-
-            //// Extract SMS details
-            //string smsPattern = @"(?:sms:(?<phonenumber>[^;]+);body=(?<message>[^;]+))";
-            //Match smsMatch = Regex.Match(qrCodeText, smsPattern);
-
-            //if (smsMatch.Success)
-            //{
-            //    string phoneNumber = smsMatch.Groups["phonenumber"].Value;
-            //    string message = smsMatch.Groups["message"].Value;
-
-            //    textBox.Text = $"SMS\nPhone Number: {phoneNumber}\nMessage: {message}";
-            //    return;
-            //}
-
-            //// If no specific type is matched, display a generic message
-            //textBox.Text = qrCodeText;
         }
     }
 }

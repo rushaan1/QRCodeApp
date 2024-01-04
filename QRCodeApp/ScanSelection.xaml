@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ScanSelection"
-      Background="Snow">
+      Background="Snow"
+      AllowDrop="True" Drop="Window_Drop" DragEnter="Window_DragEnter" DragOver="Window_DragOver" DragLeave="Window_DragLeave">
 
     <Viewbox>
         <Grid Width="800" Height="450">
@@ -15,6 +16,7 @@
             <Button Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
             <Button FontSize="25" Content="Files" Click="Files" Background="#FF1CBD5E" Margin="320,148,329,250"/>
             <Button FontSize="25" Content="Open Camera" Click="Camera" Background="#FF1CBD5E" Margin="298,237,306,158"/>
+            <Label FontSize="21" FontFamily="Yu Gothic Light" Margin="280,349,290,64">Drag and Drop Available</Label>
         </Grid>
     </Viewbox>
 </Page>
