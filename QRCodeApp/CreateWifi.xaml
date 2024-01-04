@@ -1,4 +1,4 @@
-﻿<Page x:Class="QRCodeApp.Create"
+﻿<Page x:Class="QRCodeApp.CreateWifi"
 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,13 +15,20 @@ Title="Create">
             <!--Column 1-->
             <Button Grid.Column="0" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,290,400">Back</Button>
 
-            <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="66" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,87,257,329" MinHeight="34" MinWidth="66">Name</Label>
-            <TextBox FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,121,30,294" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
+            <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,73,181,343" MinHeight="34" MinWidth="66">QR Code Name</Label>
+            <TextBox FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,107,30,308" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
 
-            <Label Name="title" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="110" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,163,213,253" MinHeight="34" MinWidth="110">Your Text</Label>
-            <TextBox Background="White" TextWrapping="Wrap" AcceptsReturn="True" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="text" Margin="79,197,30,146" MinHeight="30" MinWidth="275" TextChanged="text_TextChanged" FontFamily="Global Sans Serif"/>
+            <Label Content="SSID: " FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,171,253,245"/>
+            <TextBox Name="ssid" FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="171,178,44,248" FontFamily="Global Sans Serif"/>
 
+            <Label Content="Password:" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,204,234,212"/>
+            <TextBox Name="pwd" FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="171,210,44,216" FontFamily="Global Sans Serif"/>
 
+            <Label Content="Encryption:" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,252,224,164"/>
+
+            <RadioButton x:Name="WPA" IsChecked="True" Margin="181,265,168,171">WPA</RadioButton>
+            <RadioButton x:Name="WEP" Margin="245,265,104,171">WEP</RadioButton>
+            <RadioButton x:Name="NONE" Margin="305,265,44,171">NONE</RadioButton>
 
             <Label MinHeight="34" MinWidth="62" MaxHeight="34" MaxWidth="62" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="77,311,261,105" Width="62" FontFamily="Yu Gothic UI Light" Height="34" Content="Color"/>
             <xctk:ColorPicker MinHeight="25" MinWidth="68" MaxHeight="25" MaxWidth="68" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="25" x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" SelectedColor="Black" Margin="144,316,188,109" />

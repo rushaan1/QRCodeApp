@@ -197,10 +197,48 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CreateSms.xaml.cs">
+      <DependentUpon>CreateSms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateUrl.xaml.cs">
+      <DependentUpon>CreateUrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateVcard.xaml.cs">
+      <DependentUpon>CreateVcard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateWifi.xaml.cs">
+      <DependentUpon>CreateWifi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Credits.xaml.cs">
+      <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScanSelection.xaml.cs">
+      <DependentUpon>ScanSelection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Selection.xaml.cs">
       <DependentUpon>Selection.xaml</DependentUpon>
     </Compile>
     <Page Include="Create.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateSms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateUrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateVcard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateWifi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Credits.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,6 +264,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ScanSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Selection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

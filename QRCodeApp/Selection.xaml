@@ -11,6 +11,7 @@
 
     <Viewbox>
         <Grid Height="450" Width="800">
+            <Button Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
             <TextBlock Margin="223,27,217,375" FontFamily="Yu Gothic Light" FontSize="36">Choose QR Code Type</TextBlock>
             <Button Click="t" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF1CBD5E" Foreground="White" FontSize="22" Margin="153,104,490,235" MinWidth="130" MinHeight="41">
                 <StackPanel Orientation="Vertical" Height="94" Width="134">

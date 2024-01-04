@@ -31,5 +31,15 @@ namespace QRCodeApp
         {
             myframe.frame.Content = new Selection();
         }
+
+        private void Scan(object sender, RoutedEventArgs e) 
+        {
+
+        }
+
+        private void OpenCredits(object sender, RoutedEventArgs e)
+        {
+            myframe.frame.Content = new Credits();
+        }
     }
 }

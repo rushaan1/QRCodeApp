@@ -10,45 +10,55 @@
       Title="MainPage">
 
     <Viewbox>
-        
-    
-    <Grid>
-        <Button Click="CreateNew" Background="#FF9DBEEE" Grid.Column="0" Margin="97,117,65,127">
-            <StackPanel Margin="0,-10,0,0">
-                <TextBlock Width="142" FontSize="100" HorizontalAlignment="Right" Height="112" Margin="0,-18,-12,0">
+
+
+        <Grid Width="800" Height="450">
+            <Label Grid.ColumnSpan="2" FontSize="28" FontFamily="Yu Gothic Light" Margin="167,10,170,390">Welcome to QR Scanner and Creater</Label>
+            <Button Click="CreateNew" Background="#FF1CBD5E" Grid.Column="0" Margin="53,184,54,179">
+                <StackPanel Margin="0,-11,0,0" Orientation="Horizontal">
+                    <TextBlock Width="142" FontSize="100" HorizontalAlignment="Right" Height="112" Margin="0,-18,-12,0">
                     <StackPanel>
-                        <TextBlock Margin="0,0,0,0" FontFamily="Yu Gothic UI Light">+</TextBlock>
+                        <TextBlock FontSize="70" Margin="18,11,0,0" FontFamily="Yu Gothic Light" RenderTransformOrigin="0.5,0.5" Padding="0,1,0,0">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-0.423"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform><Run Text="+"/></TextBlock>
                     </StackPanel>
                 </TextBlock>
-                    <TextBlock FontSize="40" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" FontFamily="Yu Gothic UI Light" Padding="5,0,7,0" > Create New </TextBlock>
-            </StackPanel>
-        </Button>
+                    <TextBlock FontSize="33" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-56,0,0,-9.2" FontFamily="Yu Gothic UI Light" Padding="5,0,7,0" ><Run Text="Create New"/></TextBlock>
+                </StackPanel>
+            </Button>
 
-        <Button Background="#FFB4C7F3" Grid.Column="1" Margin="97.2,-111,64.6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal" Height="41" Width="181">
-                <TextBlock FontSize="29" Margin="52,0,0,-0.2" Width="129">Scan Now!</TextBlock>
-            </StackPanel>
-        </Button>
+            <Button Background="#FF1CBD5E" Grid.Column="1" Margin="97.2,-111,64.6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Height="41" Width="181">
+                    <TextBlock FontFamily="Yu Gothic Light" FontSize="29" Margin="50,-2,0,-0.2" Width="129" Padding="0,0,0,2"><Run Text="Scan Now!"/></TextBlock>
+                </StackPanel>
+            </Button>
 
-        <Image x:Name="abc" Grid.Column="1" Source="/Images/scannn.png" Width="75" Height="75" Margin="111.2,117,210.6,228"></Image>
+            <Image IsHitTestVisible="False" x:Name="abc" Grid.Column="1" Source="/Images/scannn.png" MaxWidth="100" Margin="113,111,210,221"></Image>
 
-        <Label FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="66.2,189,228.6,199" FontFamily="Yu Gothic UI Light">Open Recent</Label>
-        <ListView Grid.Column="1" Margin="66.2,226,61.6,65">
-            <ListViewItem>
-                <Button Background="White" Width="256" Height="18">1.QrCodeName >34</Button>
-            </ListViewItem>
-        </ListView>
+            <Label FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="66.2,189,228.6,199" FontFamily="Yu Gothic UI Light">Open Recent</Label>
+            <ListView Grid.Column="1" Margin="68,236,60,56">
+                <ListViewItem>
+                    <Button Background="White" Width="256" Height="18">1.QrCodeName >34</Button>
+                </ListViewItem>
+            </ListView>
 
-        <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,-140,0,0"></Rectangle>
-        <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,226,0,0"></Rectangle>
-        <Label Grid.Column="0" FontFamily="Yu Gothic Light" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="36" Margin="0,0,0,-46">O</Label>
-        <Label Grid.Column="1" FontFamily="Yu Gothic Light" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" Margin="0,0,0,-46">R</Label>
+            <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,-140,0,0"></Rectangle>
+            <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,226,0,0"></Rectangle>
+            <Label Grid.Column="0" FontFamily="Yu Gothic Light" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="36" Margin="0,0,0,-46">O</Label>
+            <Label Grid.Column="1" FontFamily="Yu Gothic Light" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" Margin="0,0,0,-46">R</Label>
 
+            <Button Click="OpenCredits" FontFamily="Yu Gothic Light" FontSize="18" Background="Transparent" BorderBrush="Transparent" Grid.Column="1" Margin="309,19,10,397">Credits</Button>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-    </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Viewbox>
 </Page>
