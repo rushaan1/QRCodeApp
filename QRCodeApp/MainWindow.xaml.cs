@@ -27,10 +27,7 @@ namespace QRCodeApp
             InitializeComponent();
             myframe.frame = main;
             myframe.frame.Content = new MainPage();
-            //Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QR Codes"));
-            //Trace.WriteLine("Ahem Ji Aapki Chai: "+System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QR Codes"));
-        }
-
-        
+            //Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QR Codes"));        }
+        } 
     }
 }
