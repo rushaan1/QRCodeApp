@@ -25,6 +25,9 @@
             Entire applicaiton is developed by Rushaan <LineBreak/> <LineBreak/>
             For any queries or feedback, mail at <Hyperlink Click="copymail">sayedmuhammadrushaan@gmail.com</Hyperlink> (Click to copy)
             </TextBlock>
+
+            <!-- THIS CREDIT IS TO BE ADDED Warning free icon: https://www.flaticon.com/free-icons/warning !-->
+            <!-- (Delete Icon) <a href="https://www.freepik.com/icon/bin_484611#fromView=keyword&page=1&position=2&uuid=c3eec5d5-8264-4125-84a2-55f318327519">Icon by Freepik</a>!-->
         </Grid>
     </Viewbox>
 </Page>

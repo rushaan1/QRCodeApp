@@ -17,7 +17,9 @@
 
             <Image x:Name="scannedQR" Width="200" Height="200" Margin="299,26,301,224"></Image>
             <TextBox Background="#FF9DF168" IsReadOnly="True" BorderBrush="Transparent" TextWrapping="Wrap" x:Name="qrDetails" TextAlignment="Center" FontSize="24" FontFamily="Yu Gothic Light" Margin="196,226,196,49">That image did not have any qr code! Please go back</TextBox>
-            <TextBlock x:Name="filename" TextAlignment="Center" Margin="82,413,76,10" FontFamily="Century Gothic" FontSize="16"></TextBlock>
+            <TextBlock x:Name="filename" TextAlignment="Center" Margin="81,406,77,2" FontFamily="Century Gothic" FontSize="16"><Span Foreground="#FFA31515" FontSize="12.6666666666667" FontFamily="Consolas"></Span></TextBlock>
+            <Image x:Name="warningImg1" Visibility="Hidden" Source="/Images/warning.png" Width="41" Height="25" Margin="151,402,608,23"></Image>
+            <Image x:Name="warningImg2" Visibility="Hidden" Source="/Images/warning.png" Width="41" Height="25" Margin="612,402,147,23"></Image>
             <Button x:Name="prev" Click="Previous" Foreground="White" FontSize="25" Content="Prev" Background="#FF1CBD5E" Margin="106,357,604,50"/>
             <Button x:Name="next" Click="Next" Foreground="White" FontSize="25" Content="Next" Background="#FF1CBD5E" Margin="604,357,106,50"/>
             <TextBlock x:Name="counter" Panel.ZIndex="2" TextAlignment="Center" Margin="365,10,367,414" FontFamily="Century Gothic" FontSize="16">0/0</TextBlock>

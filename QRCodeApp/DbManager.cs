@@ -42,24 +42,18 @@ namespace QRCodeApp
             }
         }
 
-        public void PrintQRCodes() 
-        {
-            using (var connection = new SqliteConnection($"Data Source=QrCodeDatabase.db"))
-            {
-                connection.Open();
+        //public SqliteDataReader QRCodeDataReader() 
+        //{
+        //    using (var connection = new SqliteConnection($"Data Source=QrCodeDatabase.db"))
+        //    {
+        //        connection.Open();
 
-                var selectCommand = connection.CreateCommand();
-                selectCommand.CommandText = $"SELECT * FROM QrCodes";
+        //        var selectCommand = connection.CreateCommand();
+        //        selectCommand.CommandText = $"SELECT * FROM QrCodes";
 
-                using (var reader = selectCommand.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Trace.WriteLine($"Name: {reader.GetString(0)}, Content: {reader.GetString(2)}, DateTime: {reader.GetString(3)}, FilePath: {reader.GetString(1)}\n");
-                    }
-                }
-            }
-        }
+        //        return selectCommand.ExecuteReader();
+        //    }
+        //}
 
         public string GetDt()
         {

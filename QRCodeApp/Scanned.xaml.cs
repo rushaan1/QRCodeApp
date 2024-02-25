@@ -15,7 +15,8 @@ using System.Windows.Shapes;
 using System.Drawing;
 using ZXing;
 using System.Text.RegularExpressions;
-using System.Diagnostics; 
+using System.Diagnostics;
+using QRCoder;
 
 namespace QRCodeApp
 {
@@ -26,6 +27,7 @@ namespace QRCodeApp
     {
         private Bitmap qr;
         private int index;
+        private bool fromMain = false;
         private string[] qrpaths;
 
         private string processed = "";
@@ -48,10 +50,11 @@ namespace QRCodeApp
             }
         }
 
-        public Scanned(Bitmap qr, string fileLocation)
+        public Scanned(Bitmap qr, string fileLocation, bool fromMain)
         {
             InitializeComponent();
             this.qr = qr;
+            this.fromMain = fromMain;
             BarcodeReader barcodeReader = new BarcodeReader();
             ZXing.Result result = barcodeReader.Decode(qr);
             if (result == null) 
@@ -70,6 +73,32 @@ namespace QRCodeApp
             IdentifyQrCodeContent(result.Text);
             raw = result.Text;
             scannedQR.Source = B2BI(qr);
+        }
+
+        public Scanned(string content, string fileLocation)
+        {
+            InitializeComponent();
+            this.fromMain = true;
+            filename.Text = "Either the file of this QR Code was deleted or renamed!\n"+fileLocation;
+            filename.Foreground = System.Windows.Media.Brushes.Red;  
+            warningImg1.Visibility = Visibility.Visible;
+            warningImg2.Visibility = Visibility.Visible;
+            counter.Visibility = Visibility.Hidden;
+            prev.Visibility = Visibility.Hidden;
+            next.Visibility = Visibility.Hidden;
+            showRaw.Visibility = Visibility.Visible;
+            showMain.Visibility = Visibility.Visible;
+            IdentifyQrCodeContent(content);
+            raw = content;
+
+            System.Drawing.Color clr = System.Drawing.Color.White;
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.H);
+            QRCode qrCode = new QRCode(qrCodeData);
+
+            Bitmap qrBitmap = qrCode.GetGraphic(20, System.Drawing.Color.Black, clr, true);
+
+            scannedQR.Source = B2BI(qrBitmap);
         }
 
         public Scanned(string[] qrpaths)  
@@ -188,6 +217,11 @@ namespace QRCodeApp
 
         private void Back(object sender, RoutedEventArgs e) 
         {
+            if (fromMain) 
+            {
+                myframe.frame.Content = new MainPage();
+                return;
+            }
             myframe.frame.Content = new ScanSelection();
         }
 

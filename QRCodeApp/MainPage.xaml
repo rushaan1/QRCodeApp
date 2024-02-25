@@ -41,7 +41,8 @@
 
             <Image IsHitTestVisible="False" x:Name="abc" Grid.Column="1" Source="/Images/scannn.png" MaxWidth="100" Margin="113,111,210,221"></Image>
 
-            <Label FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="66.2,189,228.6,199" FontFamily="Yu Gothic UI Light">Open Recent</Label>
+            <Label FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="68,210,229,208" FontFamily="Yu Gothic UI Light">Open Recent</Label>
+            <Button Visibility="Visible" x:Name="expandButton" Click="Expand" BorderBrush="Snow" Background="Snow" FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="228,213,57,213" FontFamily="Yu Gothic UI Light" Width="115" Height="24">Click to Expand</Button>
             <ListView BorderBrush="Green" x:Name="recents" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Column="1" Margin="71,238,54,56">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -57,10 +58,12 @@
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListViewItem >
-                    <Button BorderBrush="#FF1CBD5E" Background="White" Width="264" Height="31" Content="1.QrCodeName &gt;34" Margin="-3,-1,0,0"/>
+                    <!--<Button BorderBrush="#FF1CBD5E" Background="White" Width="264" Height="31" Content="1.QrCodeName &gt;34" Margin="-3,-1,0,0"/>-->
                 </ListViewItem>
-                
+
             </ListView>
+
+            <Label Name="noQRFoundText" Visibility="Visible" HorizontalAlignment="Center" Content="No recent QR Codes found" Margin="124,295,100,127" Grid.Column="1"/>
 
             <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,-140,0,0"></Rectangle>
             <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,226,0,0"></Rectangle>
