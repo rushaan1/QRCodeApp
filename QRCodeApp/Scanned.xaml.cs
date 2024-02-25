@@ -179,6 +179,10 @@ namespace QRCodeApp
 
         private void ShowMain(object sender, RoutedEventArgs e)
         {
+            if (processed == "") 
+            {
+                return;
+            }
             qrDetails.Text = processed;
         }
 

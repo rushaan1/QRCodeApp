@@ -42,10 +42,24 @@
             <Image IsHitTestVisible="False" x:Name="abc" Grid.Column="1" Source="/Images/scannn.png" MaxWidth="100" Margin="113,111,210,221"></Image>
 
             <Label FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="66.2,189,228.6,199" FontFamily="Yu Gothic UI Light">Open Recent</Label>
-            <ListView Grid.Column="1" Margin="68,236,60,56">
-                <ListViewItem>
-                    <Button Background="White" Width="256" Height="18">1.QrCodeName >34</Button>
+            <ListView BorderBrush="Green" x:Name="recents" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Column="1" Margin="71,238,54,56">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListViewItem >
+                    <Button BorderBrush="#FF1CBD5E" Background="White" Width="264" Height="31" Content="1.QrCodeName &gt;34" Margin="-3,-1,0,0"/>
                 </ListViewItem>
+                
             </ListView>
 
             <Rectangle Height="129" Fill="Black" Width="2" HorizontalAlignment="Right" Margin="0,-140,0,0"></Rectangle>

@@ -64,7 +64,7 @@ namespace QRCodeApp
         {
             System.Drawing.Color clr = System.Drawing.Color.White;
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.H);
             QRCode qrCode = new QRCode(qrCodeData);
 
             Bitmap qrBitmap = qrCode.GetGraphic(20, qrColor, clr, true);
