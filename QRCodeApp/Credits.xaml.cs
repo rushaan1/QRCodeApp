@@ -23,6 +23,7 @@ namespace QRCodeApp
         public Credits()
         {
             InitializeComponent();
+            
         }
 
         private void Back(object sender, RoutedEventArgs agrs) 

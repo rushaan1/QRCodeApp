@@ -208,6 +208,8 @@ namespace QRCodeApp
                 string filePath = saveFileDialog.FileName;
                 Trace.WriteLine($"Filepath: {filePath} \n format: {this.format} ");
                 SaveQRCode(false, mainQR, filePath, GetFormat(this.format));
+                DbManager dbm = new DbManager();
+                dbm.InsertQRCode(name.Text, filePath, contentWhenGenerated);
                 //SaveQRCode(mainQR, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SavedQRs", $"{name.Text}.png"), System.Drawing.Imaging.ImageFormat.Png);
             }
         }

@@ -23,6 +23,8 @@ namespace QRCodeApp
         public MainPage()
         {
             InitializeComponent();
+            DbManager dbm = new DbManager();
+            dbm.InitializeDatabase();
             abc.Source = new BitmapImage(new Uri("/Images/sampleQR.png", UriKind.Relative)); 
             abc.Source = new BitmapImage(new Uri("/Images/scannn.png", UriKind.Relative));
 
@@ -58,6 +60,8 @@ namespace QRCodeApp
         private void OpenCredits(object sender, RoutedEventArgs e)
         {
             myframe.frame.Content = new Credits();
+            DbManager dbm = new DbManager();
+            dbm.PrintQRCodes();
         }
 
     }
