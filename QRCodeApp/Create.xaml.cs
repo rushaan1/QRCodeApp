@@ -112,7 +112,7 @@ namespace QRCodeApp
             }
             catch (Exception ex) 
             {
-                MessageBox.Show("An Error has occured! Restarting the app may help.", "Error");
+                MessageBox.Show("An Error has occured! Restarting the app may help else contact support.", "Error");
             }
 
         }
@@ -198,6 +198,11 @@ namespace QRCodeApp
         // More like download
         private void Save(object sender, RoutedEventArgs e)
         {
+            if (mainQR == null) 
+            {
+                MessageBox.Show("First generate a QR Code ong", "Error");
+                return;
+            }
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
             // Set initial directory to be inside "Downloads" directory

@@ -98,10 +98,17 @@ namespace QRCodeApp
 
         public void SaveQRCode(bool update, Bitmap qrCode, string filePath, System.Drawing.Imaging.ImageFormat format)
         {
-            qrCode.Save(filePath, format);
-            if (update)
+            try
             {
-                setImg();
+                qrCode.Save(filePath, format);
+                if (update)
+                {
+                    setImg();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error has occured! Restarting the app may help else contact support.", "Error");
             }
         }
 
@@ -186,6 +193,11 @@ namespace QRCodeApp
         // More like download
         private void Save(object sender, RoutedEventArgs e)
         {
+            if (mainQR == null)
+            {
+                MessageBox.Show("First generate a QR Code ong", "Error");
+                return;
+            }
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
             // Set initial directory to be inside "Downloads" directory
@@ -208,6 +220,14 @@ namespace QRCodeApp
                 string filePath = saveFileDialog.FileName;
                 Trace.WriteLine($"Filepath: {filePath} \n format: {this.format} ");
                 SaveQRCode(false, mainQR, filePath, GetFormat(this.format));
+
+                DbManager dbm = new DbManager();
+                if (dbm.QRCodeExists(filePath))
+                {
+                    dbm.DeleteQRCode(filePath);
+                }
+                dbm.InsertQRCode(name.Text, filePath, contentWhenGenerated);
+
                 //SaveQRCode(mainQR, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SavedQRs", $"{name.Text}.png"), System.Drawing.Imaging.ImageFormat.Png);
             }
         }
@@ -231,6 +251,8 @@ namespace QRCodeApp
 
         private void Back(object sender, RoutedEventArgs e)
         {
+            qrcode.Source = null;
+            mainQR = null;
             myframe.frame.Content = new Selection();
         }
 

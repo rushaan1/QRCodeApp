@@ -17,6 +17,8 @@ using ZXing;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using QRCoder;
+using Microsoft.Data.Sqlite;
+using System.IO;
 
 namespace QRCodeApp
 {
@@ -75,6 +77,12 @@ namespace QRCodeApp
             IdentifyQrCodeContent(result.Text);
             raw = result.Text;
             scannedQR.Source = B2BI(qr);
+
+            DbManager dbm = new DbManager();
+            if (dbm.QRCodeExists(fileLocation)==false && fromMain == false && fromHistory == false) 
+            {
+                dbm.InsertQRCode(System.IO.Path.GetFileName(fileLocation), fileLocation, raw);
+            }
         }
 
         public Scanned(bool mismatch, string content, string fileLocation, bool fromHistory)
@@ -135,6 +143,13 @@ namespace QRCodeApp
             counter.Text = $"{index+1}/{qrpaths.Length}";
             IdentifyQrCodeContent(result.Text);
             scannedQR.Source = B2BI(bmp);
+
+
+            DbManager dbm = new DbManager();
+            if (dbm.QRCodeExists(qrpaths[0]) == false && fromMain == false && fromHistory == false)
+            {
+                dbm.InsertQRCode(System.IO.Path.GetFileName(qrpaths[0]), qrpaths[0], result.Text);
+            }
         }
 
         private void Previous(object sender, RoutedEventArgs e) 
@@ -169,6 +184,12 @@ namespace QRCodeApp
             counter.Text = $"{index+1}/{qrpaths.Length}";
             IdentifyQrCodeContent(result.Text);
             scannedQR.Source = B2BI(bmp);
+
+            DbManager dbm = new DbManager();
+            if (dbm.QRCodeExists(qrpaths[index]) == false && fromMain == false && fromHistory == false)
+            {
+                dbm.InsertQRCode(System.IO.Path.GetFileName(qrpaths[index]), qrpaths[index], result.Text);
+            }
         }
         
         private void Next(object sender, RoutedEventArgs e) 
@@ -203,6 +224,12 @@ namespace QRCodeApp
             counter.Text = $"{index+1}/{qrpaths.Length}";
             IdentifyQrCodeContent(result.Text);
             scannedQR.Source = B2BI(bmp);
+
+            DbManager dbm = new DbManager();
+            if (dbm.QRCodeExists(qrpaths[index]) == false && fromMain == false && fromHistory == false)
+            {
+                dbm.InsertQRCode(System.IO.Path.GetFileName(qrpaths[index]), qrpaths[index], result.Text);
+            }
         }
 
         private void ShowRaw(object sender, RoutedEventArgs e) 
