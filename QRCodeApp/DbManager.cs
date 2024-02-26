@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.Data.Sqlite;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace QRCodeApp
 {
@@ -39,6 +40,63 @@ namespace QRCodeApp
                 var insertCommand = connection.CreateCommand();
                 insertCommand.CommandText = $"INSERT INTO QrCodes VALUES ('{name}', '{file_path}', '{content}', '{GetDt()}')";
                 insertCommand.ExecuteNonQuery();
+            }
+        }
+
+        public bool QRCodeExists(string value) 
+        {
+            using (var connection = new SqliteConnection("Data Source=QrCodeDatabase.db")) 
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = $"SELECT COUNT(*) FROM QrCodes WHERE file_path = '{value}'";
+
+                // ExecuteScalar returns the count of rows that match the condition
+                int rowCount = Convert.ToInt32(command.ExecuteScalar());
+                if (rowCount > 0)
+                {
+                    return true;
+                }
+                else 
+                {
+                    return false;
+                }
+            }
+        }
+
+        public void DeleteQRCode(string value) 
+        {
+            using (var connection = new SqliteConnection("Data Source=QrCodeDatabase.db")) 
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = $"DELETE FROM QrCodes WHERE file_path = '{value}'";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteQRCodes(List<string> values)
+        {
+            using (var connection = new SqliteConnection("Data Source=QrCodeDatabase.db"))
+            {
+                connection.Open();
+                foreach (string value in values) 
+                {
+                    var command = connection.CreateCommand();
+                    command.CommandText = $"DELETE FROM QrCodes WHERE file_path = '{value}'";
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteAllQRCodes() 
+        {
+            using (var connection = new SqliteConnection("Data Source=QrCodeDatabase.db"))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM QrCodes";
+                command.ExecuteNonQuery();
             }
         }
 

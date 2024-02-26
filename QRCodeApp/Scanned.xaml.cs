@@ -28,6 +28,7 @@ namespace QRCodeApp
         private Bitmap qr;
         private int index;
         private bool fromMain = false;
+        private bool fromHistory = false;
         private string[] qrpaths;
 
         private string processed = "";
@@ -50,11 +51,12 @@ namespace QRCodeApp
             }
         }
 
-        public Scanned(Bitmap qr, string fileLocation, bool fromMain)
+        public Scanned(Bitmap qr, string fileLocation, bool fromMain, bool fromHistory)
         {
             InitializeComponent();
             this.qr = qr;
             this.fromMain = fromMain;
+            this.fromHistory = fromHistory;
             BarcodeReader barcodeReader = new BarcodeReader();
             ZXing.Result result = barcodeReader.Decode(qr);
             if (result == null) 
@@ -75,12 +77,18 @@ namespace QRCodeApp
             scannedQR.Source = B2BI(qr);
         }
 
-        public Scanned(string content, string fileLocation)
+        public Scanned(bool mismatch, string content, string fileLocation, bool fromHistory)
         {
             InitializeComponent();
             this.fromMain = true;
+            this.fromHistory = fromHistory;
             filename.Text = "Either the file of this QR Code was deleted or renamed!\n"+fileLocation;
-            filename.Foreground = System.Windows.Media.Brushes.Red;  
+            filename.Foreground = System.Windows.Media.Brushes.Red;
+            if (mismatch) 
+            {
+                filename.Text = "Issues while processing QR Code!\n"+fileLocation;
+                filename.Foreground = System.Windows.Media.Brushes.Black;
+            }
             warningImg1.Visibility = Visibility.Visible;
             warningImg2.Visibility = Visibility.Visible;
             counter.Visibility = Visibility.Hidden;
@@ -217,6 +225,13 @@ namespace QRCodeApp
 
         private void Back(object sender, RoutedEventArgs e) 
         {
+            qr = null;
+            scannedQR.Source = null;
+            if (fromHistory) 
+            {
+                myframe.frame.Content = new ExpandedPage();
+                return;
+            }
             if (fromMain) 
             {
                 myframe.frame.Content = new MainPage();

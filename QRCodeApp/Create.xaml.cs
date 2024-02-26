@@ -98,11 +98,23 @@ namespace QRCodeApp
 
         public void SaveQRCode(bool update, Bitmap qrCode, string filePath, System.Drawing.Imaging.ImageFormat format)
         {
-            qrCode.Save(filePath, format);
-            if (update) 
+            //if (File.Exists(filePath)) 
+            //{
+            //    File.Delete(filePath);
+            //}
+            try
             {
-                setImg();
+                qrCode.Save(filePath, format);
+                if (update)
+                {
+                    setImg();
+                }
             }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("An Error has occured! Restarting the app may help.", "Error");
+            }
+
         }
 
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
@@ -208,7 +220,12 @@ namespace QRCodeApp
                 string filePath = saveFileDialog.FileName;
                 Trace.WriteLine($"Filepath: {filePath} \n format: {this.format} ");
                 SaveQRCode(false, mainQR, filePath, GetFormat(this.format));
+                
                 DbManager dbm = new DbManager();
+                if (dbm.QRCodeExists(filePath)) 
+                {
+                    dbm.DeleteQRCode(filePath);
+                }
                 dbm.InsertQRCode(name.Text, filePath, contentWhenGenerated);
                 //SaveQRCode(mainQR, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SavedQRs", $"{name.Text}.png"), System.Drawing.Imaging.ImageFormat.Png);
             }
@@ -231,6 +248,8 @@ namespace QRCodeApp
 
         private void Back(object sender, RoutedEventArgs e)
         {
+            qrcode.Source = null;
+            mainQR = null;
             myframe.frame.Content = new Selection();
         }
 
@@ -279,6 +298,9 @@ namespace QRCodeApp
         {
 
         }
+
+        // TODO MAKE SURE TO SAVE TO DATABASE IN EVERY Create PAGE, ADD TRY CATCH BLOCK TO SAVING IMAGE AND CLEAR QR CODE IMAGE FROM BOTH BITMAP VARIABLE AND UI IMAGE SOURCE     
+        // TODO SOLVE OLD PREVIOUSLY UNKNOWN BUG OF SAVE BUTTON ALLOWING SAVING OF QR CODE BEFORE IT IS GENERATED DUE TO THE NAME AND OTHER FIELDS BEING FILLED, *THIS NEEDS TO BE DONE FOR ALL QR CODE CREATION PAGES INCLUDING THIS ONE*
 
     }
 }

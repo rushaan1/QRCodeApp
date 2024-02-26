@@ -16,14 +16,15 @@
             <Button Grid.Column="0" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
             <Label FontSize="28" FontFamily="Yu Gothic Light" Margin="303,10,267,391">QR Codes History</Label>
 
-            <Button Opacity="0.22" BorderBrush="White" Background="White" Width="30" Height="30" Margin="648,-293,0,0" >
+            <Button Click="RemoveItems" x:Name="remover" Opacity="0.22" BorderBrush="White" Background="White" Width="30" Height="30" Margin="648,-293,0,0" >
                 <Image Source="/Images/bin.png"></Image>
             </Button>
+            <Button Content="Delete All" Click="RemoveAllItems" x:Name="removerAll" Opacity="1" BorderBrush="Red" Background="Red" Height="30" Margin="709,10,10,410" />
             <Label Width="40" Height="30" Margin="60,68,700,352">S.No.</Label>
             <Label Height="30" Margin="266,68,481,352">Name</Label>
             <Label Height="30" Margin="489,68,258,352">Time</Label>
             <Label Height="30" Margin="554,68,193,352">Date</Label>
-            <ListView BorderBrush="Green" x:Name="recents" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="66,98,54,26">
+            <ListView BorderBrush="Green" x:Name="history" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="66,98,54,26">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Template">
@@ -37,10 +38,10 @@
                         </Setter>
                     </Style>
                 </ListView.ItemContainerStyle>
-                <ListViewItem>
+                <!--<ListViewItem>
                     <StackPanel Orientation="Horizontal">
                         <Label Width="63">1.</Label>
-                        <Button BorderBrush="#FF1CBD5E" Background="White" Width="381" Height="34" Content="QR CODE NAME" Margin="-26,-1,0,0"/>
+                        <Button BorderBrush="#FF1CBD5E" Background="White" Width="381" Height="34" Content="QR CODE NAME" Margin="-26,-1,0,0" FontSize="16"/>
                         <Label>00:00:00 YYYY/MM/DD</Label>
                         <Image Visibility="Hidden" ToolTip="Either the file of this QR Code was deleted or renamed!" Source="/Images/warning.png" Width="41" Height="25"></Image>
                         <CheckBox Height="16" Width="15" Margin="33,0,0,0">
@@ -49,7 +50,7 @@
                             </CheckBox.LayoutTransform>
                         </CheckBox>
                     </StackPanel>
-                </ListViewItem>
+                </ListViewItem>-->
 
 
 

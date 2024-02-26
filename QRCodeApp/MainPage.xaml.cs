@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using Microsoft.Data.Sqlite;
 using System.IO;
+using ZXing;
 
 namespace QRCodeApp
 {
@@ -50,11 +51,16 @@ namespace QRCodeApp
             //}
 
 
-            int i = 0;
+            List<Button> buttons = new List<Button>();
 
             using (var connection = new SqliteConnection($"Data Source=QrCodeDatabase.db"))
             {
                 connection.Open();
+
+                var countCommand = connection.CreateCommand();
+                countCommand.CommandText = "SELECT COUNT(*) FROM QrCodes";
+
+                int rowCount = Convert.ToInt32(countCommand.ExecuteScalar());
 
                 var selectCommand = connection.CreateCommand();
                 selectCommand.CommandText = $"SELECT * FROM QrCodes";
@@ -65,6 +71,7 @@ namespace QRCodeApp
                     {
                         noQRFoundText.Visibility = Visibility.Hidden;
                         expandButton.Visibility = Visibility.Visible;
+                        int i = rowCount;
                         while (reader.Read())
                         {
                             Button button = new Button
@@ -74,16 +81,13 @@ namespace QRCodeApp
                                 Background = System.Windows.Media.Brushes.White,
                                 Width = 264,
                                 Height = 31,
-                                Content = $"{i + 1}.{reader.GetString(0)}", //name
+                                Content = $"{i}.{reader.GetString(0)}", // name
                                 Margin = new Thickness(-3, -1, 0, 0)
                             };
                             button.Click += RecentQRCodeButtonClick;
 
-
-                            ListViewItem recentBtn = new ListViewItem();
-                            recentBtn.Content = button;
-                            recents.Items.Add(recentBtn);
-                            i++;
+                            buttons.Add(button); // Add the button to the list in the original order
+                            i--;
                         }
                     }
                     else
@@ -93,6 +97,17 @@ namespace QRCodeApp
                     }
                 }
             }
+
+            // Reverse the list of buttons before adding them to the ListView
+            buttons.Reverse();
+
+            foreach (var button in buttons)
+            {
+                ListViewItem recentBtn = new ListViewItem();
+                recentBtn.Content = button;
+                recents.Items.Add(recentBtn);
+            } //ik I should've just inserted items at the beginning of the list view which wouldn't have required list but whatever
+
 
         }
 
@@ -104,27 +119,44 @@ namespace QRCodeApp
             Trace.WriteLine("Recent QR Code Button Click Detected!");
             Trace.WriteLine("File Path: "+filePath);
 
-            if (File.Exists(filePath))
+            string content = "Error";
+
+            using (var connection = new SqliteConnection($"Data Source=QrCodeDatabase.db"))
             {
-                myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(filePath), filePath, true);
+                connection.Open();
+
+                var selectCommand = connection.CreateCommand();
+                selectCommand.CommandText = $"SELECT content FROM QrCodes WHERE file_path='{filePath}'";
+
+                object result = selectCommand.ExecuteScalar();
+
+                if (result != null)
+                {
+                    content = result.ToString();
+                }
+            }
+
+            if (File.Exists(filePath) && IsImageFile(filePath))
+            {
+                if (new BarcodeReader().Decode(new System.Drawing.Bitmap(filePath)) != null)
+                {
+                    if (new BarcodeReader().Decode(new System.Drawing.Bitmap(filePath)).Text == content)
+                    {
+                        myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(filePath), filePath, true, false);
+                    }
+                    else
+                    {
+                        myframe.frame.Content = new Scanned(true, content, filePath, false);
+                    }
+                }
+                else 
+                {
+                    myframe.frame.Content = new Scanned(true, content, filePath, false);
+                }
             }
             else 
             {
-                using (var connection = new SqliteConnection($"Data Source=QrCodeDatabase.db"))
-                {
-                    connection.Open();
-
-                    var selectCommand = connection.CreateCommand();
-                    selectCommand.CommandText = $"SELECT content FROM QrCodes WHERE file_path='{filePath}'";
-
-                    object result = selectCommand.ExecuteScalar();
-
-                    if (result != null)
-                    {
-                        string content = result.ToString();
-                        myframe.frame.Content = new Scanned(content, filePath);
-                    }
-                }
+                myframe.frame.Content = new Scanned(false, content, filePath, false);
             }
         }
 
@@ -146,6 +178,24 @@ namespace QRCodeApp
         private void Expand(object sender, RoutedEventArgs e) 
         {
             myframe.frame.Content = new ExpandedPage();
+        }
+
+        private bool IsImageFile(string filePath)
+        {
+            try
+            {
+                using (FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    BitmapDecoder decoder = BitmapDecoder.Create(stream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
+                    // Check if the decoder is created successfully, indicating that the file is a valid image
+                    return decoder.Frames.Count > 0;
+                }
+            }
+            catch (Exception)
+            {
+                // An exception occurred, indicating that the file is not a valid image or couldn't be opened
+                return false;
+            }
         }
 
     }

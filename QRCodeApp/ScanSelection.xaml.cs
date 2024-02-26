@@ -85,7 +85,7 @@ namespace QRCodeApp
         {
             if (files.Length == 1)
             {
-                myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(files[0]), files[0].ToString(), false);
+                myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(files[0]), files[0].ToString(), false, false);
             }
             else if (files.Length > 1)
             {
@@ -137,7 +137,7 @@ namespace QRCodeApp
                 string[] selectedImagePath = openFileDialog.FileNames;
                 if (selectedImagePath.Length == 1)
                 {
-                    myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(selectedImagePath[0]), selectedImagePath[0].ToString(), false);
+                    myframe.frame.Content = new Scanned(new System.Drawing.Bitmap(selectedImagePath[0]), selectedImagePath[0].ToString(), false, false);
                 }
                 else if (selectedImagePath.Length > 1) 
                 {
