@@ -16,7 +16,7 @@ Title="Create">
             <Button Grid.Column="0" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,290,400">Back</Button>
 
             <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,73,181,343" MinHeight="34" MinWidth="66">QR Code Name</Label>
-            <TextBox FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,107,30,308" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
+            <TextBox FontSize="26.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,107,30,308" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
 
             <Label Content="SSID: " FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,171,253,245"/>
             <TextBox Name="ssid" FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="171,178,44,248" FontFamily="Global Sans Serif"/>
@@ -28,13 +28,13 @@ Title="Create">
 
             <RadioButton x:Name="WPA" IsChecked="True" Margin="181,265,168,171">WPA</RadioButton>
             <RadioButton x:Name="WEP" Margin="245,265,104,171">WEP</RadioButton>
-            <RadioButton x:Name="NONE" Margin="305,265,44,171">NONE</RadioButton>
+            <RadioButton x:Name="NONE" Margin="305,265,35,168">NONE</RadioButton>
 
             <Label MinHeight="34" MinWidth="62" MaxHeight="34" MaxWidth="62" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="77,311,261,105" Width="62" FontFamily="Yu Gothic UI Light" Height="34" Content="Color"/>
             <xctk:ColorPicker MinHeight="25" MinWidth="68" MaxHeight="25" MaxWidth="68" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="25" x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" SelectedColor="Black" Margin="144,316,188,109" />
 
             <Label MinHeight="34" MinWidth="66" MaxHeight="34" MaxWidth="66" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="239,311,95,105" Width="66" FontFamily="Yu Gothic UI Light" Height="34">Format</Label>
-            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="comboBox" SelectedIndex="2" IsEditable="False" Width="60" MinWidth="60" MinHeight="23" Margin="310,316,30,111">
+            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="comboBox" SelectedIndex="2" IsEditable="False" Width="60" MinWidth="60" MinHeight="23" Margin="310,316,30,109">
                 <ComboBoxItem >
                     JPEG
                 </ComboBoxItem>
@@ -60,6 +60,7 @@ Title="Create">
 
             <!--Column 2-->
             <Image Panel.ZIndex="1" x:Name="qrcode" Opacity="0.38" Source="/Images/sampleQR.png" Grid.Column="1" Width="200" Height="200"/>
+            <!--<Image Panel.ZIndex="1" Source="/Images/check.png" Grid.Column="1" Margin="335,391,38,1"/>-->
 
             <Label Name="filename" FontSize="19" Grid.Column="1" Margin="71,333,209,83" Width="100" FontFamily="Yu Gothic UI Light" Height="34" Content="" RenderTransformOrigin="0.466,0.497" MinWidth="120" MinHeight="34"/>
             <Button HorizontalAlignment="Stretch" Click="AddIcon" Background="#FF1CBD5E" Foreground="White" Width="110" Height="40" VerticalAlignment="Stretch" FontSize="17.5" Grid.Column="1" Margin="71,400,219,10" MinWidth="110">Add Icon</Button>

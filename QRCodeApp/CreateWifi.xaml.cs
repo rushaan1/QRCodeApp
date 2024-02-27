@@ -228,7 +228,7 @@ namespace QRCodeApp
                     dbm.DeleteQRCode(filePath);
                 }
                 dbm.InsertQRCode(name.Text, filePath, contentWhenGenerated);
-
+                new CheckIconHandler(grid, this.Dispatcher);
             }
         }
 

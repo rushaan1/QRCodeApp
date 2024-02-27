@@ -25,6 +25,7 @@ namespace QRCodeApp
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             myframe.frame = main;
             myframe.frame.Content = new MainPage();
             //Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QR Codes"));        }

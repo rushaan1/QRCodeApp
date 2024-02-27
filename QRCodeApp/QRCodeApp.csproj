@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CheckIconHandler.cs" />
     <Compile Include="ConfirmationDialog.xaml.cs">
       <DependentUpon>ConfirmationDialog.xaml</DependentUpon>
     </Compile>
@@ -197,6 +198,7 @@
     </Content>
     <Resource Include="Images\message.png" />
     <Resource Include="Images\bin.png" />
+    <Resource Include="Images\check.png" />
     <Content Include="Images\scannn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -16,10 +16,10 @@ Title="Create">
             <Button Grid.Column="0" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,290,400">Back</Button>
 
             <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="66" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,87,257,329" MinHeight="34" MinWidth="66">Name</Label>
-            <TextBox FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,121,30,294" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
+            <TextBox FontSize="26.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,121,30,294" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
 
             <Label Name="title" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="110" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,163,213,253" MinHeight="34" MinWidth="110">URL</Label>
-            <TextBox Background="White" TextWrapping="Wrap" AcceptsReturn="False" FontSize="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="text" Margin="79,197,30,209" MinHeight="30" MinWidth="275" TextChanged="text_TextChanged" FontFamily="Global Sans Serif"/>
+            <TextBox Background="White" AcceptsReturn="False" FontSize="33.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="text" Margin="79,197,30,209" MinHeight="30" MinWidth="275" TextChanged="text_TextChanged" FontFamily="Global Sans Serif"/>
 
 
             <Label MinHeight="34" MinWidth="62" MaxHeight="34" MaxWidth="62" FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="77,311,261,105" Width="62" FontFamily="Yu Gothic UI Light" Height="34" Content="Color"/>

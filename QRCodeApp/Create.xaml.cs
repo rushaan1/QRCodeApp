@@ -232,6 +232,7 @@ namespace QRCodeApp
                     dbm.DeleteQRCode(filePath);
                 }
                 dbm.InsertQRCode(name.Text, filePath, contentWhenGenerated);
+                new CheckIconHandler(grid, this.Dispatcher);
                 //SaveQRCode(mainQR, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SavedQRs", $"{name.Text}.png"), System.Drawing.Imaging.ImageFormat.Png);
             }
         }

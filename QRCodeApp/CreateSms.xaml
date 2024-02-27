@@ -16,7 +16,7 @@ Title="Create">
             <Button Grid.Column="0" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,290,400">Back</Button>
 
             <Label FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,91,181,325" MinHeight="34" MinWidth="66">QR Code Name</Label>
-            <TextBox FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,125,30,290" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
+            <TextBox FontSize="26.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="name" Margin="79,125,30,290" MinHeight="30" MinWidth="275" FontFamily="Global Sans Serif"/>
 
             <Label Content="Phone No:: " FontSize="19" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Yu Gothic UI Light" Height="34" Margin="77,186,229,230"/>
             <TextBox Name="ph" FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="171,193,44,233" FontFamily="Global Sans Serif"/>

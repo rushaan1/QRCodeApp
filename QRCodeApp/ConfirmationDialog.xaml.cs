@@ -17,12 +17,14 @@ namespace QRCodeApp
         public ConfirmationDialog()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             topLabel.Content = "Are you sure you want to delete ALL the QR Codes from History?";
         }
 
         public ConfirmationDialog(List<string> filePaths)
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.filePaths = filePaths;
         }
 
