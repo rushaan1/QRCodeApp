@@ -38,7 +38,11 @@ namespace QRCodeApp
                 connection.Open();
 
                 var insertCommand = connection.CreateCommand();
-                insertCommand.CommandText = $"INSERT INTO QrCodes VALUES ('{name}', '{file_path}', '{content}', '{GetDt()}')";
+                insertCommand.CommandText = $"INSERT INTO QrCodes VALUES (@item1, @item2, @item3, @item4)";
+                insertCommand.Parameters.AddWithValue("@item1", name);
+                insertCommand.Parameters.AddWithValue("@item2", file_path);
+                insertCommand.Parameters.AddWithValue("@item3", content);
+                insertCommand.Parameters.AddWithValue("@item4", GetDt());
                 insertCommand.ExecuteNonQuery();
             }
         }
@@ -49,8 +53,8 @@ namespace QRCodeApp
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = $"SELECT COUNT(*) FROM QrCodes WHERE file_path = '{value}'";
-
+                command.CommandText = $"SELECT COUNT(*) FROM QrCodes WHERE file_path = @item";
+                command.Parameters.AddWithValue("@item", value);
                 // ExecuteScalar returns the count of rows that match the condition
                 int rowCount = Convert.ToInt32(command.ExecuteScalar());
                 if (rowCount > 0)
@@ -70,7 +74,8 @@ namespace QRCodeApp
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = $"DELETE FROM QrCodes WHERE file_path = '{value}'";
+                command.CommandText = $"DELETE FROM QrCodes WHERE file_path = @item";
+                command.Parameters.AddWithValue("@item", value);
                 command.ExecuteNonQuery();
             }
         }
@@ -83,7 +88,8 @@ namespace QRCodeApp
                 foreach (string value in values) 
                 {
                     var command = connection.CreateCommand();
-                    command.CommandText = $"DELETE FROM QrCodes WHERE file_path = '{value}'";
+                    command.CommandText = $"DELETE FROM QrCodes WHERE file_path = @item";
+                    command.Parameters.AddWithValue("@item", value);
                     command.ExecuteNonQuery();
                 }
             }

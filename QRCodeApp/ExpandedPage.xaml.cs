@@ -171,8 +171,8 @@ namespace QRCodeApp
                 connection.Open();
 
                 var selectCommand = connection.CreateCommand();
-                selectCommand.CommandText = $"SELECT content FROM QrCodes WHERE file_path='{filePath}'";
-
+                selectCommand.CommandText = $"SELECT content FROM QrCodes WHERE file_path=@item";
+                selectCommand.Parameters.AddWithValue("@item", filePath);
                 object result = selectCommand.ExecuteScalar();
 
                 if (result != null)

@@ -108,7 +108,7 @@ namespace QRCodeApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error has occured! Restarting the app may help else contact support.", "Error");
+                MessageBox.Show("An Error has occured! Restarting the app may help else contact support via credits page.", "Error");
             }
         }
 
