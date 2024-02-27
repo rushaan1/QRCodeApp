@@ -23,17 +23,24 @@ namespace QRCodeApp
         public Credits()
         {
             InitializeComponent();
-            
+
         }
 
-        private void Back(object sender, RoutedEventArgs agrs) 
+        private void Back(object sender, RoutedEventArgs agrs)
         {
             myframe.frame.Content = new MainPage();
         }
 
-        private void copymail(object sender, RoutedEventArgs e) 
+        private void copymail(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText("sayedmuhammadrushaan@gmail.com"); 
+            Clipboard.SetText("sayedmuhammadrushaan@gmail.com");
+        }
+
+        private void Hrn(object sender, RequestNavigateEventArgs e)
+        {
+            string url = e.Uri.AbsoluteUri;
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url));
+            e.Handled = true;
         }
     }
 }

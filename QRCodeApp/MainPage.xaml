@@ -39,7 +39,7 @@
                 </StackPanel>
             </Button>
 
-            <Image IsHitTestVisible="False" x:Name="abc" Grid.Column="1" Source="/Images/scannn.png" MaxWidth="100" Margin="113,111,210,221"></Image>
+            <Image IsHitTestVisible="False" x:Name="abc" Grid.Column="1" Source="/Images/scannn.png" MaxWidth="100" Margin="130,139,230,250"></Image>
 
             <Label FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="68,210,229,208" FontFamily="Yu Gothic UI Light">Open Recent</Label>
             <Button Visibility="Visible" x:Name="expandButton" Click="Expand" BorderBrush="Snow" Background="Snow" FontSize="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="228,213,57,213" FontFamily="Yu Gothic UI Light" Width="115" Height="24">Click to Expand</Button>

@@ -15,20 +15,32 @@
         <Grid Width="800" Height="450">
             <Button Grid.Column="0" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
             <Label FontSize="28" FontFamily="Yu Gothic Light" Margin="343,13,349,388">Credits</Label>
-            <TextBlock TextWrapping="Wrap" Margin="110,67,55,45" FontFamily="Yu Gothic Light" FontSize="24" Padding="73,0,0,0">
-            Text by Vaadin Icons on IconScout <LineBreak></LineBreak>
-            URL Icon by Ww2censor on wikimedia.org <LineBreak></LineBreak>
-            V by Daniel Bruce on IconScout <LineBreak></LineBreak>
-            Message Icon by adrian on IconScout <LineBreak></LineBreak>
-            Wifi by Amit Jakhu
-            <LineBreak/> 
-            Entire applicaiton is developed by Rushaan <LineBreak/> <LineBreak/>
+            <TextBlock TextWrapping="Wrap" Margin="10,87,0,-10" FontFamily="Yu Gothic Light" FontSize="18" Padding="73,0,0,0">
+            <Hyperlink NavigateUri="https://iconscout.com/free-icon/text-184" RequestNavigate="Hrn">Free Text Icon in Glyph Style</Hyperlink> by Vaadin Icons is licensed under <Hyperlink NavigateUri="https://creativecommons.org/licenses/by/4.0/" RequestNavigate="Hrn">CC BY 4.0</Hyperlink> <LineBreak></LineBreak>
+            <Hyperlink NavigateUri="https://commons.wikimedia.org/wiki/File:Chain_link_icon_slanted.png" RequestNavigate="Hrn">Chain link icon slanted</Hyperlink> by Mdowdell is licensed under <Hyperlink NavigateUri="https://creativecommons.org/licenses/by-sa/3.0/deed.en" RequestNavigate="Hrn">CC BY-SA 3.0</Hyperlink> <LineBreak></LineBreak>
+            
+            <Hyperlink NavigateUri="https://iconscout.com/free-icon/v-27" RequestNavigate="Hrn">Free V Icon in Glyph Style</Hyperlink> by Daniel Bruce is licensed under <Hyperlink NavigateUri="https://creativecommons.org/licenses/by-sa/4.0/" RequestNavigate="Hrn">CC BY-SA 4.0</Hyperlink> <LineBreak></LineBreak>
+            
+                
+            <Hyperlink NavigateUri="https://iconscout.com/free-icon/message-2367724" RequestNavigate="Hrn">Free Message Icon in Line Style</Hyperlink> by adrian is licensed under <Hyperlink NavigateUri="https://creativecommons.org/licenses/by-nc/4.0/" RequestNavigate="Hrn">CC BY-NC 4.0</Hyperlink> <LineBreak></LineBreak>
+            
+                
+            <Hyperlink NavigateUri="https://iconscout.com/free-icon/wifi-438" RequestNavigate="Hrn">Free Wifi Icon in Line Style</Hyperlink> by Amit Jakhu is licensed under <Hyperlink NavigateUri="https://creativecommons.org/licenses/by/4.0/" RequestNavigate="Hrn">CC BY 4.0</Hyperlink> <LineBreak></LineBreak>
+                
+            <Hyperlink NavigateUri="https://www.flaticon.com/free-icons/warning" RequestNavigate="Hrn">Warning icons created by amonrat rungreangfangsai - Flaticon</Hyperlink><LineBreak></LineBreak>    
+            
+            Bin icon designed by <Hyperlink NavigateUri="https://www.freepik.com" RequestNavigate="Hrn">freepik</Hyperlink><LineBreak></LineBreak>    
+            
+            <Hyperlink NavigateUri="https://www.flaticon.com/free-icons/foursquare-check-in" RequestNavigate="Hrn">Foursquare check in icons created by hqrloveq - Flaticon</Hyperlink><LineBreak></LineBreak>
+            
+            <Hyperlink NavigateUri="https://icon-icons.com/icon/price-scan-scanner-bar-barcode-code/108573" RequestNavigate="Hrn">Price, scan, scanner, bar, barcode, code Icon</Hyperlink> by Those Icons is licensed under <Hyperlink NavigateUri="https://creativecommons.org/licenses/by/4.0/" RequestNavigate="Hrn">CC BY 4.0</Hyperlink> <LineBreak></LineBreak>
+            Entire application is developed by Rushaan <LineBreak/> <LineBreak/>
+             
             For any queries or feedback, mail at <Hyperlink Click="copymail">sayedmuhammadrushaan@gmail.com</Hyperlink> (Click to copy)
             </TextBlock>
 
-            <!-- THIS CREDIT IS TO BE ADDED Warning free icon: https://www.flaticon.com/free-icons/warning !-->
-            <!-- (Delete Icon) <a href="https://www.freepik.com/icon/bin_484611#fromView=keyword&page=1&position=2&uuid=c3eec5d5-8264-4125-84a2-55f318327519">Icon by Freepik</a>!-->
-            <!--<a href="https://www.flaticon.com/free-icons/foursquare-check-in" title="foursquare check in icons">Foursquare check in icons created by hqrloveq - Flaticon</a>-->
+            <!--Message icon license does not permit commercial usage-->
+            <!-- warning icon exact link: https://www.flaticon.com/free-icon/attention_3020000?term=warning&page=1&position=19&origin=tag !-->
         </Grid>
     </Viewbox>
 </Page>

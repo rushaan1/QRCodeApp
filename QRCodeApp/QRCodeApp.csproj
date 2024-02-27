@@ -199,9 +199,7 @@
     <Resource Include="Images\message.png" />
     <Resource Include="Images\bin.png" />
     <Resource Include="Images\check.png" />
-    <Content Include="Images\scannn.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Images\scannn.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\text.png" />
