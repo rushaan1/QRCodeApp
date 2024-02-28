@@ -24,13 +24,13 @@ namespace QRCodeApp
     /// <summary>
     /// Interaction logic for Create.xaml
     /// </summary>
-    public partial class Create : Page 
+    public partial class CreateEmail : Page
     {
         private Bitmap mainQR = null;
         private Bitmap overlay = null;
         private string contentWhenGenerated = "";
 
-        private string format = "PNG"; 
+        private string format = "PNG";
         private Frame frame;
 
         private Dictionary<string, Run> textRuns = new Dictionary<string, Run>();
@@ -40,13 +40,13 @@ namespace QRCodeApp
 
         private Paragraph dp;
 
-        private System.Drawing.Imaging.ImageFormat GetFormat(string format) 
+        private System.Drawing.Imaging.ImageFormat GetFormat(string format)
         {
             System.Drawing.Imaging.ImageFormat myformat = null;
-            switch (format) 
+            switch (format)
             {
                 case "PNG":
-                    myformat =  System.Drawing.Imaging.ImageFormat.Png;
+                    myformat = System.Drawing.Imaging.ImageFormat.Png;
                     break;
                 case "EXIF":
                     myformat = System.Drawing.Imaging.ImageFormat.Exif;
@@ -70,12 +70,12 @@ namespace QRCodeApp
 
 
             Bitmap qrBitmap = qrCode.GetGraphic(20, qrColor, clr, true);
-            if (overlay != null) 
+            if (overlay != null)
             {
-                qrBitmap = AddOverlay(qrBitmap, overlay); 
+                qrBitmap = AddOverlay(qrBitmap, overlay);
             }
             contentWhenGenerated = data;
-            return qrBitmap; 
+            return qrBitmap;
         }
 
         public Bitmap AddOverlay(Bitmap baseImage, Bitmap overlayImage)
@@ -112,7 +112,7 @@ namespace QRCodeApp
                     setImg();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("An Error has occured! Restarting the app may help else contact support via credits page.", "Error");
             }
@@ -139,7 +139,7 @@ namespace QRCodeApp
             }
         }
 
-        private void setImg() 
+        private void setImg()
         {
             qrcode.Source = B2BI(mainQR);
         }
@@ -154,7 +154,7 @@ namespace QRCodeApp
          */
 
 
-        public Create()
+        public CreateEmail()
         {
             InitializeComponent();
             comboBox.SelectionChanged += ComboBox_Selected;
@@ -164,7 +164,7 @@ namespace QRCodeApp
 
         private void AddIcon(object sender, RoutedEventArgs e)
         {
-            if ((e.Source as Button).Content == "Remove Icon") 
+            if ((e.Source as Button).Content == "Remove Icon")
             {
                 overlay = null;
                 mainQR = GenerateQRCode(contentWhenGenerated, System.Drawing.Color.FromArgb(colorPicker.SelectedColor.Value.A, colorPicker.SelectedColor.Value.R, colorPicker.SelectedColor.Value.G, colorPicker.SelectedColor.Value.B));
@@ -172,9 +172,9 @@ namespace QRCodeApp
                 (e.Source as Button).Content = "Add Icon";
                 return;
             }
-            if (mainQR == null) 
+            if (mainQR == null)
             {
-                MessageBox.Show("First generate a qr code","Error");
+                MessageBox.Show("First generate a qr code", "Error");
                 return;
             }
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -184,7 +184,7 @@ namespace QRCodeApp
             {
                 // User selected an image file
                 string selectedImagePath = openFileDialog.FileName;
-                filename.Content = openFileDialog.Title;  
+                filename.Content = openFileDialog.Title;
 
                 // Load the image and display it (replace "ImageControl" with the actual name of your Image control)
                 Bitmap bitmapImage = new Bitmap(selectedImagePath);
@@ -193,14 +193,14 @@ namespace QRCodeApp
                 SaveQRCode(true, img, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GeneratedQRs", "generatedqr.png"), System.Drawing.Imaging.ImageFormat.Png);
                 //qrcode.Source = new BitmapImage(new Uri("/GeneratedQRs/generatedqr.png", UriKind.Relative)); 
                 //SaveQRCode(img, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GeneratedQRs", "generatedqr."+format.ToLower()), GetFormat(format));
-                (e.Source as Button).Content = "Remove Icon"; 
+                (e.Source as Button).Content = "Remove Icon";
             }
         }
 
         // More like download
         private void Save(object sender, RoutedEventArgs e)
         {
-            if (mainQR == null) 
+            if (mainQR == null)
             {
                 MessageBox.Show("First generate a QR Code ong", "Error");
                 return;
@@ -219,7 +219,7 @@ namespace QRCodeApp
 
             saveFileDialog.InitialDirectory = initialDirectory;
             saveFileDialog.Filter = $"Text Files (*.{format.ToLower()})|*.{format.ToLower()}|All files (*.*)|*.*";
-            saveFileDialog.FileName = name.Text+"."+format.ToLower(); // Default file name
+            saveFileDialog.FileName = name.Text + "." + format.ToLower(); // Default file name
 
             if (saveFileDialog.ShowDialog() == true)
             {
@@ -227,9 +227,9 @@ namespace QRCodeApp
                 string filePath = saveFileDialog.FileName;
                 Trace.WriteLine($"Filepath: {filePath} \n format: {this.format} ");
                 SaveQRCode(false, mainQR, filePath, GetFormat(this.format));
-                
+
                 DbManager dbm = new DbManager();
-                if (dbm.QRCodeExists(filePath)) 
+                if (dbm.QRCodeExists(filePath))
                 {
                     dbm.DeleteQRCode(filePath);
                 }
@@ -241,10 +241,10 @@ namespace QRCodeApp
 
         private void Generate(object sender, RoutedEventArgs e)
         {
-            string qrText = text.Text;
-            if (name.Text == "" || qrText == "") 
+            string qrText = $"mailto:{address.Text}?subject={subject.Text.Replace(" ","%20")}&body={message.Text.Replace(" ","%20")}";
+            if (name.Text == "" || address.Text == "" || subject.Text == "" || message.Text=="")
             {
-                MessageBox.Show("Name and Text textboxes cannot be empty!", "Error");
+                MessageBox.Show("Name and other textboxes cannot be empty!", "Error");
                 return;
             }
 
@@ -265,7 +265,7 @@ namespace QRCodeApp
         {
             if (e.NewValue.HasValue)
             {
-                
+
 
             }
         }
@@ -292,10 +292,10 @@ namespace QRCodeApp
             {
                 return;
             }
-            size.Content = ( (int) e.NewValue).ToString() + "x" + ((int)e.NewValue).ToString();
+            size.Content = ((int)e.NewValue).ToString() + "x" + ((int)e.NewValue).ToString();
             if (mainQR == null)
             {
-                pako.Value = 200; 
+                pako.Value = 200;
                 return;
             }
             qrcode.Width = e.NewValue;

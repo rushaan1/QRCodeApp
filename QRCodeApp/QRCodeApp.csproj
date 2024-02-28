@@ -70,6 +70,9 @@
     <Compile Include="ConfirmationDialog.xaml.cs">
       <DependentUpon>ConfirmationDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateEmail.xaml.cs">
+      <DependentUpon>CreateEmail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateSms.xaml.cs">
       <DependentUpon>CreateSms.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,9 @@
     <Compile Include="Scanned.xaml.cs">
       <DependentUpon>Scanned.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Scanner.xaml.cs">
+      <DependentUpon>Scanner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScanSelection.xaml.cs">
       <DependentUpon>ScanSelection.xaml</DependentUpon>
     </Compile>
@@ -103,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Create.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateEmail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +163,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Scanned.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scanner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +235,9 @@
     <Folder Include="SavedQRs\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AForge.Video.DirectShow">
+      <Version>2.2.5</Version>
+    </PackageReference>
     <PackageReference Include="BitMiracle.LibTiff.NET">
       <Version>2.4.649</Version>
     </PackageReference>

@@ -31,16 +31,23 @@
                     <TextBlock FontSize="38" HorizontalAlignment="Right" Margin="0,-7,12,0" Height="46" Width="124" VerticalAlignment="Bottom" Padding="34,0,1,0"><Run Text="WiFi"/></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Click="v" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF1CBD5E" Foreground="White" FontSize="22" Margin="234,255,415,85" MinWidth="130" MinHeight="41">
+            <Button Click="v" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF1CBD5E" Foreground="White" FontSize="22" Margin="153,255,496,85" MinWidth="130" MinHeight="41">
                 <StackPanel Orientation="Vertical" Height="94" Width="134">
                     <Image Source="/Images/v.png" Height="52" Width="90" VerticalAlignment="Top" Margin="22,3,22.4,0"/>
                     <TextBlock FontSize="38" HorizontalAlignment="Right" Margin="4,-12,11,0" Height="46" Width="136" VerticalAlignment="Bottom" Padding="34,0,1,0"><Run Text="vCard"/></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Click="s" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF1CBD5E" Foreground="White" FontSize="22" Margin="441,255,204,85" MinWidth="130" MinHeight="41">
+            <Button Click="s" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF1CBD5E" Foreground="White" FontSize="22" Margin="340,255,305,85" MinWidth="130" MinHeight="41">
                 <StackPanel Orientation="Vertical" Height="94" Width="134">
                     <Image Source="/Images/message.png" Height="52" Width="90" VerticalAlignment="Top" Margin="22,3,22.4,0"/>
                     <TextBlock FontSize="38" HorizontalAlignment="Right" Margin="4,-12,4,0" Height="46" Width="136" VerticalAlignment="Bottom" Padding="34,0,1,0"><Run Text="SMS"/></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Click="e" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF1CBD5E" Foreground="White" FontSize="22" Margin="526,255,119,85" MinWidth="130" MinHeight="41">
+                <StackPanel Orientation="Vertical" Height="94" Width="134">
+                    <TextBlock Foreground="Black" FontSize="42" HorizontalAlignment="Right" Margin="-11,-3,-22,-3" Height="51" Width="145" VerticalAlignment="Bottom" Padding="34,0,1,0"><Run Text="@"/></TextBlock>
+                    <TextBlock FontSize="38" HorizontalAlignment="Right" Margin="-6,-3,9,0" Height="46" Width="136" VerticalAlignment="Bottom" Padding="34,0,1,0"><Run Text="Email"/></TextBlock>
                 </StackPanel>
             </Button>
         </Grid>

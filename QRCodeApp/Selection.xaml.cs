@@ -56,5 +56,10 @@ namespace QRCodeApp
 
             myframe.frame.Content = new CreateSms();
         }
+        private void e(object sender, RoutedEventArgs e)
+        {
+
+            myframe.frame.Content = new CreateEmail();
+        }
     }
 }

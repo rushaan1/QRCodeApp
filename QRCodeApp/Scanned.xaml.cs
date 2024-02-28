@@ -85,6 +85,8 @@ namespace QRCodeApp
             }
         }
 
+
+
         public Scanned(bool mismatch, string content, string fileLocation, bool fromHistory)
         {
             InitializeComponent();
