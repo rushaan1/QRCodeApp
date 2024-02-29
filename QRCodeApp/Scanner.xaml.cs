@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ZXing;
 using System.IO;
+using System.Windows.Interop;
+using System.Runtime.InteropServices;
 
 namespace QRCodeApp
 {
@@ -34,7 +36,7 @@ namespace QRCodeApp
             }
             else
             {
-                MessageBox.Show("No video capture devices found.","No Camera");
+                MessageBox.Show("No video capture devices found.", "No Camera");
             }
         }
 
@@ -42,49 +44,47 @@ namespace QRCodeApp
         {
             try
             {
-                using (Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone())
+
+                Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+
+                Application.Current.Dispatcher.Invoke(() =>
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
+                    cameraImage.Source = BitmapToImageSource(bitmap);
+                });
+
+                BarcodeReader barcodeReader = new BarcodeReader();
+                Result result = barcodeReader.Decode(bitmap);
+
+                if (result != null)
+                {
+                    string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    string initialDirectory = System.IO.Path.Combine(downloadsPath, "QR Codes");
+
+                    if (!Directory.Exists(initialDirectory))
                     {
-                        cameraImage.Source = BitmapToImageSource(bitmap);
-                    });
-
-                    BarcodeReader barcodeReader = new BarcodeReader();
-                    Result result = barcodeReader.Decode(bitmap);
-
-                    if (result != null)
-                    {
-                        string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                        string initialDirectory = Path.Combine(downloadsPath, "QR Codes");
-
-                        if (!Directory.Exists(initialDirectory))
-                        {
-                            Directory.CreateDirectory(initialDirectory);
-                        }
-
-                        DateTime currentDateTime = DateTime.Now;
-                        string fdt = currentDateTime.ToString("yyyy-MM-dd HH_mm_ss");
-                        string fileName = "QRCode " + fdt + ".png";
-
-                        fileName = CleanFileName(fileName);
-
-                        string path = Path.Combine(initialDirectory, fileName);
-                        bitmap.Save(path, System.Drawing.Imaging.ImageFormat.Png);
-                        videoSource.NewFrame -= VideoSource_NewFrame;
-                        videoSource.SignalToStop();
-
-                        System.Threading.Tasks.Task.Run(() =>
-                        {
-                            Application.Current.Dispatcher.Invoke(() =>
-                            {
-                                cameraImage.Source = null;
-                                videoSource = null;
-                                videoDevices = null;
-                                myframe.frame.Content = new Scanned(bitmap, path, false, false);
-                            });
-                        });
+                        Directory.CreateDirectory(initialDirectory);
                     }
-                        
+
+                    DateTime currentDateTime = DateTime.Now;
+                    string fdt = currentDateTime.ToString("yyyy-MM-dd HH_mm_ss");
+                    string fileName = "QRCode " + fdt + ".png";
+
+                    fileName = CleanFileName(fileName);
+
+                    string path = System.IO.Path.Combine(initialDirectory, fileName);
+                    bitmap.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+                    videoSource.NewFrame -= VideoSource_NewFrame;
+                    videoSource.SignalToStop();
+                    System.Threading.Tasks.Task.Run(() =>
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            cameraImage.Source = null;
+                            videoSource = null;
+                            videoDevices = null;
+                            myframe.frame.Content = new Scanned(bitmap, path, false, false);
+                        });
+                    });
                 }
             }
             catch (Exception ex)
@@ -95,12 +95,26 @@ namespace QRCodeApp
 
         private ImageSource BitmapToImageSource(Bitmap bitmap)
         {
-            return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                bitmap.GetHbitmap(),
-                IntPtr.Zero,
-                Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions());
+            IntPtr hBitmap = bitmap.GetHbitmap();
+
+            try
+            {
+                return Imaging.CreateBitmapSourceFromHBitmap(
+                    hBitmap,
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions());
+            }
+            finally
+            {
+                DeleteObject(hBitmap);
+            }
         }
+
+        [DllImport("gdi32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool DeleteObject(IntPtr hObject);
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

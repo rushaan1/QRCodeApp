@@ -147,15 +147,15 @@ namespace QRCodeApp
         }
         private void Camera(object sender, RoutedEventArgs e)
         {
-            //myframe.frame.Content = new Scanner();
-            try
-            {
-                Process.Start("explorer.exe", "shell:AppsFolder\\Microsoft.WindowsCamera_8wekyb3d8bbwe!App");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An Error Occured: " + ex.Message, "Error");
-            }
+            myframe.frame.Content = new Scanner();
+        //    try
+        //    {
+        //        Process.Start("explorer.exe", "shell:AppsFolder\\Microsoft.WindowsCamera_8wekyb3d8bbwe!App");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("An Error Occured: " + ex.Message, "Error");
+        //    }
         }
     }
 }
