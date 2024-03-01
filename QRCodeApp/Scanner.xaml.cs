@@ -137,6 +137,10 @@ namespace QRCodeApp
 
         private void Back(object sender, RoutedEventArgs e)
         {
+            videoSource.SignalToStop();
+            cameraImage.Source = null;
+            videoSource = null;
+            videoDevices = null;
             myframe.frame.Content = new ScanSelection();
         }
     }
