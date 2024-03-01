@@ -212,7 +212,6 @@
     </Content>
     <Resource Include="Images\message.png" />
     <Resource Include="Images\bin.png" />
-    <Resource Include="Images\check.png" />
     <Resource Include="Images\scannn.png" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +220,7 @@
     <Resource Include="Images\v.png" />
     <Resource Include="Images\wifi.png" />
     <Resource Include="Images\warning.png" />
+    <Resource Include="Images\check.png" />
     <Content Include="Misc\dircreated.txt">
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

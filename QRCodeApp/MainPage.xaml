@@ -72,6 +72,8 @@
 
             <Button Click="OpenCredits" FontFamily="Yu Gothic Light" FontSize="18" Background="Transparent" BorderBrush="Transparent" Grid.Column="1" Margin="309,19,10,397">Credits</Button>
 
+
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
