@@ -18,7 +18,22 @@
 
             <Button Panel.ZIndex="69" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
             <Image Width="800" Height="450" x:Name="cameraImage" Stretch="UniformToFill"/>
-            
+
+
+            <Canvas>
+                <Rectangle Opacity="0.7" Fill="Red" Height="7.5" Width="800"
+                       VerticalAlignment="Top" Margin="{Binding Margin.Top, RelativeSource={RelativeSource AncestorType=Canvas}}">
+                    <Rectangle.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard AutoReverse="True" RepeatBehavior="Forever">
+                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" From="0" To="450" Duration="0:0:1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Rectangle.Triggers>
+                </Rectangle>
+            </Canvas>
         </Grid>
     </Viewbox>
 </Page>

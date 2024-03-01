@@ -10,6 +10,7 @@ using ZXing;
 using System.IO;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
+using System.Windows.Media.Animation;
 
 namespace QRCodeApp
 {
@@ -143,5 +144,6 @@ namespace QRCodeApp
             videoDevices = null;
             myframe.frame.Content = new ScanSelection();
         }
+
     }
 }
