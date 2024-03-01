@@ -96,7 +96,6 @@ namespace QRCodeApp
         private ImageSource BitmapToImageSource(Bitmap bitmap)
         {
             IntPtr hBitmap = bitmap.GetHbitmap();
-
             try
             {
                 return Imaging.CreateBitmapSourceFromHBitmap(

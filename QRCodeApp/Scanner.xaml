@@ -10,8 +10,15 @@
 
     <Viewbox>
         <Grid Width="800" Height="450">
-            <Button Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
-            <Image x:Name="cameraImage" Stretch="UniformToFill"/>
+            <Border CornerRadius="10" Background="HotPink" Panel.ZIndex="69" Margin="195,27,112,392" Width="477">
+                <TextBlock TextAlignment="Center" FontFamily="Yu Gothic Light" FontSize="20">
+                    <Bold>Make sure QR Code is properly visible on the screen.</Bold>
+                </TextBlock>
+            </Border>
+
+            <Button Panel.ZIndex="69" Click="Back" Background="#FF9DBEEE" Foreground="Black" Width="100" Height="40" FontSize="22" Margin="10,10,690,400">Back</Button>
+            <Image Width="800" Height="450" x:Name="cameraImage" Stretch="UniformToFill"/>
+            
         </Grid>
     </Viewbox>
 </Page>
