@@ -17,6 +17,7 @@
             <Button FontSize="25" Content="Files" Click="Files" Background="#FF1CBD5E" Margin="320,148,329,250"/>
             <Button FontSize="25" Content="Open Camera" Click="Camera" Background="#FF1CBD5E" Margin="298,237,306,158"/>
             <Label FontSize="21" FontFamily="Yu Gothic Light" Margin="280,349,290,64">Drag and Drop Available</Label>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-28,424,704,-2" FontFamily="Yu Gothic UI Light" Width="124">Version: 1.0.0.0</Label>
         </Grid>
     </Viewbox>
 </Page>

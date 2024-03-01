@@ -50,6 +50,7 @@
                     <TextBlock FontSize="38" HorizontalAlignment="Right" Margin="-6,-3,9,0" Height="46" Width="136" VerticalAlignment="Bottom" Padding="34,0,1,0"><Run Text="Email"/></TextBlock>
                 </StackPanel>
             </Button>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-28,424,704,-2" FontFamily="Yu Gothic UI Light" Width="124">Version: 1.0.0.0</Label>
         </Grid>
     </Viewbox>
 </Page>

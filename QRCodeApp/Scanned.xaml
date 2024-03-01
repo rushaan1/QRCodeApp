@@ -23,6 +23,7 @@
             <Button x:Name="prev" Click="Previous" Foreground="White" FontSize="25" Content="Prev" Background="#FF1CBD5E" Margin="106,357,604,50"/>
             <Button x:Name="next" Click="Next" Foreground="White" FontSize="25" Content="Next" Background="#FF1CBD5E" Margin="604,357,106,50"/>
             <TextBlock x:Name="counter" Panel.ZIndex="2" TextAlignment="Center" Margin="365,10,367,414" FontFamily="Century Gothic" FontSize="16">0/0</TextBlock>
-        </Grid> 
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="707,-5,-31,428" FontFamily="Yu Gothic UI Light" Width="124" Height="27">Version: 1.0.0.0</Label>
+        </Grid>
     </Viewbox>
 </Page>

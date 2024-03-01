@@ -221,6 +221,7 @@
     <Resource Include="Images\wifi.png" />
     <Resource Include="Images\warning.png" />
     <Resource Include="Images\check.png" />
+    <Resource Include="Images\QR Code Icon.ico" />
     <Content Include="Misc\dircreated.txt">
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

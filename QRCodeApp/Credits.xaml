@@ -40,11 +40,12 @@
              
             For any queries or feedback, mail at <Hyperlink Click="copymail">sayedmuhammadrushaan@gmail.com</Hyperlink> (Click to copy)
             </TextBlock>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="705,-2,-29,426" FontFamily="Yu Gothic UI Light" Width="124" Height="26">Version: 1.0.0.0</Label>
 
             <!--Message icon license does not permit commercial usage-->
             <!-- warning icon exact link: https://www.flaticon.com/free-icon/attention_3020000?term=warning&page=1&position=19&origin=tag !-->
 
-            <!--FREEPIK WARNING ICON: https://www.freepik.com/icon/warning_595067#fromView=search&page=1&position=1&uuid=6a9e76dd-c60d-49a7-b3d8-023fe591706f!-->        
+            <!--FREEPIK WARNING ICON: https://www.freepik.com/icon/warning_595067#fromView=search&page=1&position=1&uuid=6a9e76dd-c60d-49a7-b3d8-023fe591706f!-->
         </Grid>
     </Viewbox>
 </Page>

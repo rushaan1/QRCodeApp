@@ -55,6 +55,7 @@
 
 
             </ListView>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-28,424,704,-2" FontFamily="Yu Gothic UI Light" Width="124">Version: 1.0.0.0</Label>
         </Grid>
     </Viewbox>
 </Page>

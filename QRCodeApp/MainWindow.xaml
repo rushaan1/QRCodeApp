@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:QRCodeApp"
         mc:Ignorable="d"
         Background="Snow"
-        Title="QR Code App" Height="450" Width="805">
+        Title="QR Code App" Height="450" Width="805"
+        Icon="/Images/QR Code Icon.ico">
 
     <Frame x:Name="main" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Margin="0,0,0.4,0"></Frame>
 </Window>

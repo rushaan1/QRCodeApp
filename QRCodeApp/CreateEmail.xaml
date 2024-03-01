@@ -62,6 +62,7 @@ Title="Create">
             <Button HorizontalAlignment="Stretch" Click="AddIcon" Background="#FF1CBD5E" Foreground="White" Width="110" Height="40" VerticalAlignment="Stretch" FontSize="17.5" Grid.Column="1" Margin="71,400,219,10" MinWidth="110">Add Icon</Button>
             <Button Click="Save" Background="#FF1CBD5E" Foreground="White" Width="110" Height="40" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22" Grid.Column="1" Margin="212,399,78,10" MinWidth="110" MinHeight="41">Save</Button>
 
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="304,0,-28,421" FontFamily="Yu Gothic UI Light" Width="124" Grid.Column="1">Version: 1.0.0.0</Label>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
