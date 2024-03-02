@@ -13,7 +13,7 @@
 
 
         <Grid Width="800" Height="450">
-            <Label Grid.ColumnSpan="2" FontSize="28" FontFamily="Yu Gothic Light" Margin="167,10,170,390">Welcome to QR Scanner and Creater</Label>
+            <Label Grid.ColumnSpan="2" FontSize="28" FontFamily="Yu Gothic Light" Margin="167,10,170,390">Welcome to QR Scanner and Maker</Label>
             <Button Click="CreateNew" Background="#FF1CBD5E" Grid.Column="0" Margin="53,184,54,179">
                 <StackPanel Margin="0,-11,0,0" Orientation="Horizontal">
                     <TextBlock Width="142" FontSize="100" HorizontalAlignment="Right" Height="112" Margin="0,-18,-12,0">
